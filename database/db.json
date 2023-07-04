@@ -1,0 +1,941 @@
+{
+  "users": [
+    {
+      "id": "6cbdb793",
+      "username": "admin",
+      "password": "$2a$10$MT0lFTYnMvKoMaJeuGalbO5.2GhSyQrBi02KCP2PutQPJLWdza/2u",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "email": "admin@mail.ru",
+      "firstname": "Vlad",
+      "lastname": "Kuznetsov",
+      "age": 22,
+      "createdAt": "05.06.2022",
+      "avatar": "https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY4ODQ1MzkzMCwiZXhwIjoxNjg5MDU4NzMwfQ.PYoCF4bzNadZ-cih_GZ0P05JpRCLrhhmZTQrGTJzLHI"
+    },
+    {
+      "id": "6cbdb794",
+      "username": "user",
+      "password": "$2a$10$gOAP5ezC88gYSALaCmgi5e7Vcjc0a3FM4ijoykJTmYdVRaXRsPJqK",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "email": "user@mail.ru",
+      "firstname": "Ivan",
+      "lastname": "Ivanov",
+      "age": 22,
+      "createdAt": "05.0.2023",
+      "avatar": "https://miro.medium.com/max/2400/1*1WCjO1iYMo7J7Upp8KMfLA@2x.jpeg",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzk0IiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNjg4NDU3MjQyLCJleHAiOjE2ODkwNjIwNDJ9.D5A2f4A-vh37kUS4AwPkJm-DI2oaoAPax-yptsd-Vlk"
+    },
+    {
+      "id": "6cbdb795",
+      "username": "user1",
+      "password": "$2a$10$sKYDoF.gsZKGm7CA6ddtxucfvQXtIamxe9VMbYyneawObIr4viapO",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Vlad",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png"
+    },
+    {
+      "id": "6cbdb796",
+      "username": "user1",
+      "password": "$2a$10$MzPVo4pb4un6hn4ZwRnWGuJIB9EGWjHh2kx9Y77knw43TUQ3.ewgq",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Oleg",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://miro.medium.com/max/2400/1*1WCjO1iYMo7J7Upp8KMfLA@2x.jpeg"
+    },
+    {
+      "id": "6cbdb797",
+      "username": "user1",
+      "password": "$2a$10$X95yMJzLIYI55laW7JNqHu5PBrwMY.m9C/vAA30hB02Uf79rdL6rK",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Vlad",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png"
+    },
+    {
+      "id": "6cbdb798",
+      "username": "user1",
+      "password": "$2a$10$CdXmQE5.2EV7GdRcjEGQgOfwXmj9/JwaV4MEAzPkzqA02Genyks7u",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Max",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://miro.medium.com/max/2400/1*1WCjO1iYMo7J7Upp8KMfLA@2x.jpeg"
+    },
+    {
+      "id": "6cbdb799",
+      "username": "user1",
+      "password": "$2a$10$3pbZDFNuUeMuY5pTjuw/yuaxS86MlA6/MQJVZqee8KV.0zEyxlZte",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Den",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://miro.medium.com/max/2400/1*1WCjO1iYMo7J7Upp8KMfLA@2x.jpeg"
+    },
+    {
+      "id": "6cbdb800",
+      "username": "user1",
+      "password": "$2a$10$DVDRrzWJA3FjrmgXVOPbde5ElZqzgqtBic3jbTiBpZOlWlVhWdt3W",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Vlad",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://miro.medium.com/max/2400/1*1WCjO1iYMo7J7Upp8KMfLA@2x.jpeg"
+    },
+    {
+      "id": "6cbdb801",
+      "username": "user1",
+      "password": "$2a$10$LuBFYQRAzDCtN6/9IvHX.OttZ8ztgkEevU.Bla76YpDynQm05ydza",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Pasha",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png"
+    },
+    {
+      "id": "6cbdb802",
+      "username": "user1",
+      "password": "$2a$10$d62Gzp5WXj.1XzMb17Wx4OBQj0.nFfUEwxWBHELrVVlrhH7eRbexW",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Igor",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png"
+    },
+    {
+      "id": "6cbdb803",
+      "username": "user1",
+      "password": "$2a$10$cm/ZeHfEeKCRhnDn1qi02uTOiQKAeui4366ollFoVo20QS8yDluU.",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Pavel",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://miro.medium.com/max/2400/1*1WCjO1iYMo7J7Upp8KMfLA@2x.jpeg"
+    },
+    {
+      "id": "6cbdb804",
+      "username": "user1",
+      "password": "$2a$10$MdfFbl11FMmFs7veefsUn.KMpx23iOL8jZGTDPf829fJhm5pN4Lye",
+      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "firstname": "Oleg",
+      "lastname": "Kuznetsov",
+      "email": "vlad.kznetsov@gmail.com",
+      "age": 22,
+      "createdAt": "15.01.2023",
+      "avatar": "https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png"
+    }
+  ],
+  "friends": [
+    {
+      "userId": "6cbdb793",
+      "friendId": "6cbdb795",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "friendId": "6cbdb797",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb796",
+      "friendId": "6cbdb798",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb803",
+      "friendId": "6cbdb795",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "friendId": "6cbdb801",
+      "createdAt": "04.07.2023"
+    }
+  ],
+  "followers": [
+    {
+      "userId": "6cbdb795",
+      "followerId": "6cbdb796",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb795",
+      "followerId": "6cbdb797",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb795",
+      "followerId": "6cbdb798",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb795",
+      "followerId": "6cbdb799",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb796",
+      "followerId": "6cbdb802",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb800",
+      "followerId": "6cbdb793",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb802",
+      "followerId": "6cbdb793",
+      "createdAt": "03.02.2023"
+    },
+    {
+      "userId": "6cbdb804",
+      "followerId": "6cbdb793",
+      "createdAt": "08.02.2023"
+    },
+    {
+      "userId": "6cbdb798",
+      "followerId": "6cbdb793",
+      "createdAt": "04.07.2023"
+    },
+    {
+      "userId": "6cbdb799",
+      "followerId": "6cbdb793",
+      "createdAt": "04.07.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "followerId": "6cbdb794",
+      "createdAt": "04.07.2023"
+    }
+  ],
+  "posts": [
+    {
+      "authorId": "6cbdb793",
+      "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
+      "img": [
+        "http://getdrawings.com/images/pools-drawing-44.jpg",
+        "https://s.zefirka.net/images/2015-08-20/neobychnye-bzlikie-selfi-ot-ari-fararoj/neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg"
+      ],
+      "createdAt": "22:16 14.01.2021",
+      "id": "0"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
+      "img": [
+        "http://getdrawings.com/images/pools-drawing-44.jpg"
+      ],
+      "createdAt": "12:20 20.10.2020",
+      "id": "1"
+    },
+    {
+      "authorId": "6cbdb794",
+      "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
+      "img": [
+        "http://getdrawings.com/images/pools-drawing-44.jpg"
+      ],
+      "createdAt": "15:00 14.01.2020",
+      "id": "2"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
+      "img": [
+        "http://getdrawings.com/images/pools-drawing-44.jpg",
+        "https://s.zefirka.net/images/2015-08-20/neobychnye-bzlikie-selfi-ot-ari-fararoj/neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg"
+      ],
+      "createdAt": "15:24 14.01.2020",
+      "id": "3"
+    },
+    {
+      "authorId": "6cbdb794",
+      "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
+      "img": [
+        "https://s.zefirka.net/images/2015-08-20/neobychnye-bzlikie-selfi-ot-ari-fararoj/neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg",
+        "http://getdrawings.com/images/pools-drawing-44.jpg"
+      ],
+      "createdAt": "15:24 14.01.2020",
+      "id": "4"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "Some news",
+      "img": [
+        "http://getdrawings.com/images/pools-drawing-44.jpg"
+      ],
+      "createdAt": "12:54 24.01.2023",
+      "id": "GmSpvBG"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "New post",
+      "createdAt": "14:24 24.01.2023",
+      "id": "d57e44cf-a9dd-4957-a56c-67910dea1e5c"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "Post",
+      "createdAt": "13:41 25.01.2023",
+      "id": "ea740bc5-9213-4b2f-a58b-5436e2272e44"
+    },
+    {
+      "authorId": "6cbdb794",
+      "text": "New post",
+      "img": [
+        "http://getdrawings.com/images/pools-drawing-44.jpg",
+        "https://s.zefirka.net/images/2015-08-20/neobychnye-bzlikie-selfi-ot-ari-fararoj/neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg",
+        "http://getdrawings.com/images/pools-drawing-44.jpg"
+      ],
+      "createdAt": "12:34 30.01.2023",
+      "id": "e8a183d9-5b1f-4c09-bf21-cfba6b063a75"
+    },
+    {
+      "authorId": "6cbdb794",
+      "text": "New post",
+      "createdAt": "12:36 30.01.2023",
+      "id": "cb59c390-e3dd-4bb3-a376-cdaf5f099564"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "",
+      "img": [
+        "https://thumbs.dreamstime.com/b/person-selfie-one-line-drawing-man-taking-picture-smartphone-mobile-phone-camera-concept-narcissist-technology-166393132.jpg"
+      ],
+      "createdAt": "10:33 02.02.2023",
+      "id": "cc267ae2-a7f0-49f6-b75a-38a69a1dac36"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "Post",
+      "img": [
+        "https://cdn.wallpapersafari.com/70/6/cuDYdF.jpg",
+        "https://kartinkin.net/pics/uploads/posts/2022-07/1657888342_47-kartinkin-net-p-vodopad-raduzhnii-priroda-krasivo-foto-52.jpg"
+      ],
+      "createdAt": "10:39 02.02.2023",
+      "id": "42e896d8-91a0-4e53-97a8-a9aeadebe42a"
+    },
+    {
+      "authorId": "6cbdb793",
+      "text": "Post",
+      "createdAt": "10:33 06.02.2023",
+      "id": "fa999cdf-d236-4c21-b1c6-86ac327a2bdb"
+    },
+    {
+      "authorId": "6cbdb805",
+      "text": "New Post",
+      "createdAt": "09:51 04.07.2023",
+      "id": "c88526f9-fbce-4a76-af3a-c83288f42ea3"
+    }
+  ],
+  "user-posts": [
+    {
+      "userId": "6cbdb793",
+      "postId": "0"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "1"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "GmSpvBG"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "4"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "2"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "3"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "d57e44cf-a9dd-4957-a56c-67910dea1e5c"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "1"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "0"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "GmSpvBG"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "4"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "ea740bc5-9213-4b2f-a58b-5436e2272e44"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "e8a183d9-5b1f-4c09-bf21-cfba6b063a75"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "cb59c390-e3dd-4bb3-a376-cdaf5f099564"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "cc267ae2-a7f0-49f6-b75a-38a69a1dac36"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "42e896d8-91a0-4e53-97a8-a9aeadebe42a"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "fa999cdf-d236-4c21-b1c6-86ac327a2bdb"
+    },
+    {
+      "userId": "6cbdb805",
+      "postId": "c88526f9-fbce-4a76-af3a-c83288f42ea3"
+    }
+  ],
+  "post-likes": [
+    {
+      "userId": "6cbdb793",
+      "postId": "fa999cdf-d236-4c21-b1c6-86ac327a2bdb"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "cb59c390-e3dd-4bb3-a376-cdaf5f099564"
+    },
+    {
+      "userId": "6cbdb793",
+      "postId": "c88526f9-fbce-4a76-af3a-c83288f42ea3"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "fa999cdf-d236-4c21-b1c6-86ac327a2bdb"
+    },
+    {
+      "userId": "6cbdb794",
+      "postId": "42e896d8-91a0-4e53-97a8-a9aeadebe42a"
+    }
+  ],
+  "post-dislikes": [],
+  "comments": [
+    {
+      "id": "0",
+      "text": "Some comment",
+      "authorId": "6cbdb793",
+      "postId": "2",
+      "createdAt": "13:41:12 25.01.2021"
+    },
+    {
+      "id": "474e887e-2811-4088-8539-855097fcf337",
+      "text": "Comment",
+      "authorId": "6cbdb794",
+      "postId": "0",
+      "createdAt": "13:40:12 26.01.2023"
+    },
+    {
+      "id": "f71e3269-5528-4214-9edc-b35e228d4ef2",
+      "text": "Hello",
+      "authorId": "6cbdb794",
+      "postId": "2",
+      "createdAt": "13:40:12 26.01.2023"
+    },
+    {
+      "id": "2f96b162-b8db-490e-9750-a07f413632f2",
+      "text": "Hello",
+      "authorId": "6cbdb794",
+      "postId": "1",
+      "createdAt": "13:46:12 26.01.2023"
+    },
+    {
+      "id": "9543351a-70d4-492b-8246-7efdfbba2783",
+      "text": "Comment",
+      "authorId": "6cbdb794",
+      "postId": "3",
+      "createdAt": "13:11:12 30.01.2023"
+    },
+    {
+      "id": "abecde57-ac61-4cd3-afa4-275da3c02991",
+      "text": "New comment",
+      "authorId": "6cbdb794",
+      "postId": "0",
+      "createdAt": "13:46:12 30.01.2023"
+    },
+    {
+      "id": "ce35cdda-5576-4871-b84b-4ac8fbd7fc26",
+      "text": "Hi",
+      "authorId": "6cbdb794",
+      "postId": "0",
+      "createdAt": "13:48:12 30.01.2023"
+    },
+    {
+      "id": "283ecd52-4a62-4027-a168-bd2b6fb72777",
+      "text": "Comment",
+      "authorId": "6cbdb793",
+      "postId": "2",
+      "createdAt": "14:42:12 31.01.2023"
+    },
+    {
+      "id": "aa40bfa0-97fd-4764-a282-92f61c1654d0",
+      "text": "Comment",
+      "authorId": "6cbdb793",
+      "postId": "0",
+      "createdAt": "14:20:12 01.02.2023"
+    },
+    {
+      "id": "68afec61-fe0c-45e0-a9f4-3dfe16161204",
+      "text": "2",
+      "authorId": "6cbdb793",
+      "postId": "1",
+      "createdAt": "11:44:12 03.02.2023"
+    },
+    {
+      "id": "74a9586f-2b20-4b92-8cd4-b0fb100d84c0",
+      "text": "3",
+      "authorId": "6cbdb793",
+      "postId": "1",
+      "createdAt": "11:45:12 03.02.2023"
+    },
+    {
+      "id": "ef661ee2-303e-4cef-a15c-0b4ef8b73366",
+      "text": "Hello",
+      "authorId": "6cbdb793",
+      "postId": "0",
+      "createdAt": "12:50:12 03.02.2023"
+    },
+    {
+      "id": "5e2cd756-90b3-4f60-8ea6-5738d1eae935",
+      "text": "Comment",
+      "authorId": "6cbdb793",
+      "postId": "42e896d8-91a0-4e53-97a8-a9aeadebe42a",
+      "createdAt": "10:38:37 04.07.2023"
+    },
+    {
+      "id": "619dfe1e-ebe7-4476-8c87-7cbfd5b9d65f",
+      "text": "New comment",
+      "authorId": "6cbdb794",
+      "postId": "42e896d8-91a0-4e53-97a8-a9aeadebe42a",
+      "createdAt": "10:56:18 04.07.2023"
+    }
+  ],
+  "chats": [
+    {
+      "id": "0",
+      "name": "Some name",
+      "createdAt": "12:50:12 03.02.2023",
+      "ownerId": "6cbdb794"
+    },
+    {
+      "id": "1",
+      "name": "Some name",
+      "createdAt": "12:50:12 03.02.2023",
+      "ownerId": "6cbdb793"
+    },
+    {
+      "id": "df60a5b2-ed45-4ad8-a113-c08fcb56e60a",
+      "name": "Vlad Kuznetsov",
+      "createdAt": "14:13:22 13.02.2023",
+      "ownerId": "6cbdb793"
+    },
+    {
+      "id": "d6b85036-7136-48b8-86bd-54c75e14d246",
+      "name": "Vlad Kuznetsov",
+      "createdAt": "14:17:53 13.02.2023",
+      "ownerId": "6cbdb793"
+    },
+    {
+      "id": "c4b55bd9-bc43-4613-bce9-ced0429b35ba",
+      "name": "Vlad Kuznetsov",
+      "createdAt": "14:19:34 13.02.2023",
+      "ownerId": "6cbdb793"
+    },
+    {
+      "id": "df63736a-ae65-4771-8ecf-6514418a1348",
+      "name": "Vlad Kuznetsov",
+      "createdAt": "14:19:57 13.02.2023",
+      "ownerId": "6cbdb793"
+    },
+    {
+      "id": "4723db53-7219-4e10-93eb-9c5ac8f5dd25",
+      "name": "Vlad Kuznetsov",
+      "createdAt": "14:21:00 13.02.2023",
+      "ownerId": "6cbdb793"
+    }
+  ],
+  "messages": [
+    {
+      "id": "0",
+      "chatId": "0",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Some last message text",
+      "createdAt": "12:48:12 03.02.2023"
+    },
+    {
+      "id": "1",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "text": "Some last message text",
+      "createdAt": "12:43:12 03.02.2023"
+    },
+    {
+      "id": "2",
+      "chatId": "0",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Some last message text",
+      "createdAt": "12:50:12 01.02.2023"
+    },
+    {
+      "id": "3",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Some last message text",
+      "createdAt": "12:50:12 03.02.2023"
+    },
+    {
+      "id": "299126af-a648-4e37-9651-13056e2f6706",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "14:28:12 12.02.2023"
+    },
+    {
+      "id": "bf53d072-3bf5-4f5c-af2e-a939a0506506",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hi",
+      "createdAt": "14:49:12 12.02.2023"
+    },
+    {
+      "id": "53be4d64-40f1-4f9c-af5d-66373f1c059a",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "1",
+      "createdAt": "14:51:12 12.02.2023"
+    },
+    {
+      "id": "bf99a4fc-72bd-422c-875f-b76ae4d385f9",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "2",
+      "createdAt": "14:51:12 12.02.2023"
+    },
+    {
+      "id": "289e1cdb-d493-41e1-9b77-c030ef9fe054",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "3",
+      "createdAt": "14:52:12 12.02.2023"
+    },
+    {
+      "id": "7c76cca0-1222-4f0c-891c-c4853b05876e",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "3",
+      "createdAt": "14:52:12 12.02.2023"
+    },
+    {
+      "id": "7065485d-b180-4ec3-9ed4-dd895908ea0d",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Message",
+      "createdAt": "15:01:12 12.02.2023"
+    },
+    {
+      "id": "d0517bcd-14af-45b4-9350-d0634a052827",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "img": [
+        "https://cdn.wallpapersafari.com/70/6/cuDYdF.jpg",
+        "https://kartinkin.net/pics/uploads/posts/2022-07/1657888342_47-kartinkin-net-p-vodopad-raduzhnii-priroda-krasivo-foto-52.jpg",
+        "https://thumbs.dreamstime.com/b/person-selfie-one-line-drawing-man-taking-picture-smartphone-mobile-phone-camera-concept-narcissist-technology-166393132.jpg"
+      ],
+      "createdAt": "15:03:12 12.02.2023"
+    },
+    {
+      "id": "0b5485e3-49e9-4b5f-b088-b5590e38d626",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "15:16:11 12.02.2023"
+    },
+    {
+      "id": "9cd6e7e2-8284-4c42-bde0-fdc35422384d",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "text": "Nice",
+      "createdAt": "15:16:12 12.02.2023"
+    },
+    {
+      "id": "d76d4995-2845-4d62-90c2-58a18887b49f",
+      "chatId": "0",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Ok",
+      "createdAt": "15:55:20 12.02.2023"
+    },
+    {
+      "id": "d39b8b56-f90e-4861-b171-6252a734ff0e",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Test message",
+      "createdAt": "10:11:58 13.02.2023"
+    },
+    {
+      "id": "dfe5345c-6421-4660-8f81-d3a11f85c0e9",
+      "chatId": "0",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hi",
+      "createdAt": "13:2:24 13.02.2023"
+    },
+    {
+      "id": "bacb2f6c-b010-4e89-a479-a7b23e50623d",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Text",
+      "createdAt": "14:12:42 13.02.2023"
+    },
+    {
+      "id": "0974988d-795e-4b96-960c-164732831546",
+      "chatId": "df60a5b2-ed45-4ad8-a113-c08fcb56e60a",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "14:13:22 13.02.2023"
+    },
+    {
+      "id": "f28bb12e-8a57-46a4-b501-e3ca42c821a5",
+      "chatId": "d6b85036-7136-48b8-86bd-54c75e14d246",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "14:17:53 13.02.2023"
+    },
+    {
+      "id": "919c3fc1-3d2c-45cf-b43f-40ae011581d5",
+      "chatId": "c4b55bd9-bc43-4613-bce9-ced0429b35ba",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hi",
+      "createdAt": "14:19:34 13.02.2023"
+    },
+    {
+      "id": "139bad4c-68bc-4265-987f-de7224a57511",
+      "chatId": "df63736a-ae65-4771-8ecf-6514418a1348",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "14:19:57 13.02.2023"
+    },
+    {
+      "id": "573d61b8-2487-49e2-8734-a51830e33676",
+      "chatId": "4723db53-7219-4e10-93eb-9c5ac8f5dd25",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hi",
+      "createdAt": "14:21:00 13.02.2023"
+    },
+    {
+      "id": "3d64bd8d-775a-4d99-8a27-233f33c2e827",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "12:01:19 14.02.2023"
+    },
+    {
+      "id": "5b4da1ac-95ef-4480-b44f-3d7dbf1ed6c1",
+      "chatId": "1",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Test message\nTest message",
+      "img": [
+        "https://zonavalue.com/wp-content/uploads/2017/11/MILLENNIAL.jpg"
+      ],
+      "createdAt": "12:59:08 14.02.2023"
+    },
+    {
+      "id": "ff2ea782-f875-4cb8-bef4-490476958845",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "img": [
+        "https://proprikol.ru/wp-content/uploads/2020/02/skachat-krasivye-kartinki-na-telefon-besplatno-4.jpg"
+      ],
+      "createdAt": "10:33:56 22.06.2023"
+    },
+    {
+      "id": "3c7e2358-e21b-4dd8-8eba-e2e220924625",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "createdAt": "10:37:37 22.06.2023"
+    },
+    {
+      "id": "54028618-ad54-4791-a2d2-2202afb661f1",
+      "chatId": "0",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hello",
+      "createdAt": "10:45:56 22.06.2023"
+    },
+    {
+      "id": "fe69a29f-a215-4e65-aa4a-6358f1999e92",
+      "chatId": "0",
+      "userId": "6cbdb793",
+      "type": "text",
+      "text": "Hi",
+      "createdAt": "10:04:36 04.07.2023"
+    },
+    {
+      "id": "173e2f48-fbc4-4470-9142-1174bbc51994",
+      "chatId": "0",
+      "userId": "6cbdb794",
+      "type": "text",
+      "text": "Message",
+      "createdAt": "10:55:21 04.07.2023"
+    }
+  ],
+  "chat-members": [
+    {
+      "userId": "6cbdb793",
+      "chatId": "0",
+      "createdAt": "12:48 03.02.2023"
+    },
+    {
+      "userId": "6cbdb794",
+      "chatId": "0",
+      "createdAt": "12:48 03.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "chatId": "1",
+      "createdAt": "12:48 03.02.2023"
+    },
+    {
+      "userId": "6cbdb796",
+      "chatId": "1",
+      "createdAt": "12:48 03.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "chatId": "d6b85036-7136-48b8-86bd-54c75e14d246",
+      "createdAt": "14:17 13.02.2023"
+    },
+    {
+      "userId": "6cbdb801",
+      "chatId": "d6b85036-7136-48b8-86bd-54c75e14d246",
+      "createdAt": "14:17 13.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "chatId": "c4b55bd9-bc43-4613-bce9-ced0429b35ba",
+      "createdAt": "14:19 13.02.2023"
+    },
+    {
+      "userId": "6cbdb798",
+      "chatId": "c4b55bd9-bc43-4613-bce9-ced0429b35ba",
+      "createdAt": "14:19 13.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "chatId": "df63736a-ae65-4771-8ecf-6514418a1348",
+      "createdAt": "14:19 13.02.2023"
+    },
+    {
+      "userId": "6cbdb800",
+      "chatId": "df63736a-ae65-4771-8ecf-6514418a1348",
+      "createdAt": "14:19 13.02.2023"
+    },
+    {
+      "userId": "6cbdb793",
+      "chatId": "4723db53-7219-4e10-93eb-9c5ac8f5dd25",
+      "createdAt": "14:21 13.02.2023"
+    },
+    {
+      "userId": "6cbdb804",
+      "chatId": "4723db53-7219-4e10-93eb-9c5ac8f5dd25",
+      "createdAt": "14:21 13.02.2023"
+    }
+  ],
+  "online": {
+    "6cbdb793": "offline",
+    "6cbdb794": "offline",
+    "6cbdb795": "offline",
+    "6cbdb796": "offline",
+    "6cbdb797": "offline",
+    "6cbdb798": "offline",
+    "6cbdb799": "offline",
+    "6cbdb800": "offline",
+    "6cbdb801": "offline",
+    "6cbdb802": "offline",
+    "6cbdb803": "offline",
+    "6cbdb804": "offline"
+  },
+  "groups": [
+    {
+      "id": "6cbdb805",
+      "ownerId": "6cbdb793",
+      "name": "JavaScript",
+      "tags": [
+        "IT",
+        "MATH"
+      ],
+      "description": "This group was created for communication on the topic of programming",
+      "avatar": "https://i.pinimg.com/originals/bb/b7/96/bbb79637fa352254fe93ba9aacad1407.png",
+      "createdAt": "14:21 13.02.2023"
+    }
+  ],
+  "group-members": [
+    {
+      "groupId": "6cbdb805",
+      "userId": "6cbdb793",
+      "role": "admin"
+    }
+  ]
+}
