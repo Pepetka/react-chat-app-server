@@ -22,8 +22,33 @@ const verificationAuth = (req, res, next) => {
 		return next();
 	} catch (e) {
 		console.log(e)
-		return res.status(400).json({ message: 'Invalid Token' });
+		return res.status(400).json({ message: 'Invalid token' });
 	}
 };
 
-export default verificationAuth;
+const verificationAuthSocket = (socket, next) => {
+	const token = socket.handshake.auth.token;
+
+	if (!token) {
+		return next(new Error('Access Denied / AUTH ERROR'));
+	}
+
+	try {
+		const verifiedUser = jwt.verify(token, process.env.SECRET_KEY);
+
+		if (!verifiedUser) {
+			return next(new Error('Unauthorized request'));
+		}
+
+		socket.user = verifiedUser;
+		return next();
+	} catch (e) {
+		console.log(e)
+		return next(new Error('Invalid token'));
+	}
+};
+
+export {
+	verificationAuth,
+	verificationAuthSocket,
+};

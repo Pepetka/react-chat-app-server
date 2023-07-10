@@ -26,4 +26,6 @@ const defaultData = {
 };
 const db = new Low(adapter, defaultData);
 
+// await db.read();
+
 export default db;

@@ -2,6 +2,7 @@ import db from "../database/database.js";
 import { UserMiniModel } from "../models/user.js";
 import getContains from "../helpers/getContains.js";
 import sortByDate from "../helpers/sortByDate.js";
+import { socketController } from "../app.js";
 
 class Profile {
 	constructor () {
@@ -216,14 +217,14 @@ class Profile {
 
 	async getOnline(req, res) {
 		try {
-			const { userId } = req.query;
+			// const { userId } = req.query;
 
 			await db.read();
 
-			const { online } = db.data;
+			// const { online } = db.data;
 
-			const response = online[userId] ?? 'offline';
-			return res.json(response);
+			// const response = online[userId] ?? 'offline';
+			return res.json(socketController.onlineUsers);
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
