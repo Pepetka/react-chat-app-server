@@ -13,6 +13,7 @@ class Profile {
 
 	async profile(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { profileId } = req.query;
 
 			await db.read();
@@ -24,7 +25,7 @@ class Profile {
 				return res.status(400).json({ message: 'profile not found' });
 			}
 
-			return res.json(profile);
+			return res.json({...profile, avatar: `${fullHostName}/images/${profile.avatar}`});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -33,6 +34,7 @@ class Profile {
 
 	async group(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { groupId } = req.query;
 
 			await db.read();
@@ -44,7 +46,7 @@ class Profile {
 				return res.status(400).json({ message: 'Group not found' });
 			}
 
-			return res.json(group);
+			return res.json({...group, avatar: `${fullHostName}/images/${group.avatar}`});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -115,6 +117,7 @@ class Profile {
 
 	async getFriends(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId } = req.query;
 
 			await db.read();
@@ -131,7 +134,7 @@ class Profile {
 
 					const newUserMiniModel = new UserMiniModel({
 						id: user.id,
-						avatar: user.avatar,
+						avatar: `${fullHostName}/images/${user.avatar}`,
 						name: `${user.firstname} ${user.lastname}`
 					});
 
@@ -268,6 +271,7 @@ class Profile {
 
 	async getUsers(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, search = '' } = req.query;
 
 			await db.read();
@@ -287,7 +291,7 @@ class Profile {
 
 					const userMini = new UserMiniModel({
 						id: user.id,
-						avatar: user.avatar,
+						avatar: `${fullHostName}/images/${user.avatar}`,
 						name: `${user.firstname} ${user.lastname}`
 					});
 
@@ -301,7 +305,7 @@ class Profile {
 
 					const userMini = new UserMiniModel({
 						id: user.id,
-						avatar: user.avatar,
+						avatar: `${fullHostName}/images/${user.avatar}`,
 						name: `${user.firstname} ${user.lastname}`
 					});
 
@@ -315,7 +319,7 @@ class Profile {
 
 					const userMini = new UserMiniModel({
 						id: user.id,
-						avatar: user.avatar,
+						avatar: `${fullHostName}/images/${user.avatar}`,
 						name: `${user.firstname} ${user.lastname}`
 					});
 
@@ -340,7 +344,7 @@ class Profile {
 				.map(({ id, avatar, firstname, lastname }) => {
 					const userMini = new UserMiniModel({
 						id: id,
-						avatar: avatar,
+						avatar: `${fullHostName}/images/${avatar}`,
 						name: `${firstname} ${lastname}`
 					});
 
@@ -364,6 +368,7 @@ class Profile {
 
 	async getGroups(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, search = '' } = req.query;
 
 			await db.read();
@@ -378,6 +383,7 @@ class Profile {
 
 					return {
 						...groupData,
+						avatar: `${fullHostName}/images/${groupData.avatar}`,
 						createdAt: groupData.createdAt.split(' ')[1],
 					};
 				})

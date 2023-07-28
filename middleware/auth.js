@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const verificationAuth = (req, res, next) => {
-	if (req.originalUrl === '/login' || req.originalUrl === '/register') {
+	if (req.originalUrl === '/login' || req.originalUrl === '/register' || req.originalUrl.includes('/images/')) {
 		return next();
 	}
 

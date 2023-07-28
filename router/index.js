@@ -4,6 +4,7 @@ import Profile from "../controllers/profile.js";
 import Post from "../controllers/post.js";
 import Comment from "../controllers/comments.js";
 import Chat from "../controllers/chat.js";
+import { upload } from "../storage/storage.js";
 
 const authController = new Auth();
 const profileController = new Profile();
@@ -30,7 +31,7 @@ router.get('/group-members', profileController.groupMembers);
 
 router.get('/posts', postController.getPosts);
 router.put('/posts', postController.putPosts);
-router.post('/posts', postController.postPosts);
+router.post('/posts', upload.array('images'), postController.postPosts);
 router.get('/postStats', postController.getPostStats);
 router.post('/share', postController.share);
 router.post('/like', postController.like);
@@ -43,6 +44,6 @@ router.post('/comments', commentController.postComments);
 router.get('/getChats', chatController.getChats);
 router.get('/getChatId', chatController.getChatId);
 router.get('/messages', chatController.getMessages);
-router.post('/messages', chatController.postMessages);
+router.post('/messages', upload.array('images'), chatController.postMessages);
 
 export default router;

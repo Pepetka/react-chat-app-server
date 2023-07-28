@@ -5,13 +5,18 @@ import router from "./router/index.js";
 // import clearOnline from "./helpers/clearOnline.js";
 import {verificationAuth, verificationAuthSocket} from "./middleware/auth.js";
 import {Server} from "socket.io";
+import {writeFile} from "node:fs";
 import http from "http";
 import SocketController from "./controllers/socket.js";
+import {filesDir} from "./storage/storage.js";
+import {join} from "node:path";
+import sharp from "sharp";
 
 dotenv.config();
 // await clearOnline();
 
 const app = express();
+app.use('/images', express.static(filesDir));
 app.use(cors());
 app.use(express.json());
 app.use(verificationAuth);
@@ -28,6 +33,7 @@ io.use(verificationAuthSocket);
 const socketController = new SocketController();
 
 io.on('connection', (socket) => {
+	const fullHostName = `${socket.handshake.protocol || 'http'}://${socket.handshake.headers.host}`;
 	console.log(`A user connected: ${socket.id}`);
 	socketController.connectedUsers = socket;
 
@@ -51,7 +57,7 @@ io.on('connection', (socket) => {
 
 	socket.on('comments', async (postId) => {
 		try {
-			const comments = await socketController.getComments(postId);
+			const comments = await socketController.getComments(postId, fullHostName);
 
 			socket.emit('comments', {postId: postId, comments});
 		} catch (e) {
@@ -98,7 +104,7 @@ io.on('connection', (socket) => {
 
 	socket.on('get_messages', async (chatData) => {
 		try {
-			const messages = await socketController.getChatMessages(chatData);
+			const messages = await socketController.getChatMessages(chatData, fullHostName);
 
 			socket.emit('messages', messages);
 		} catch (e) {
@@ -109,6 +115,24 @@ io.on('connection', (socket) => {
 
 	socket.on('new_message', async (chatData) => {
 		try {
+			const images = [];
+
+			if (chatData.files) {
+				for (const { name, file } of chatData.files) {
+					const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+					const ref = `images-${uniqueSuffix}${name}.webp`;
+
+					await sharp(file)
+						.webp({ quality: 20 })
+						.toFile(join(filesDir, ref));
+
+					images.push(ref);
+				}
+			}
+
+			chatData.files = undefined;
+			chatData.img = images.length ? images : undefined;
+
 			await socketController.postChatMessages(chatData);
 
 			const messages = await socketController.getChatMessages(chatData);

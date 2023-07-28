@@ -35,7 +35,7 @@ class Socket {
 		this.#connectedUsers[socketId] = undefined;
 	}
 
-	async getChatMessages({ chatId, userId, friendId }) {
+	async getChatMessages({ chatId, userId, friendId }, fullHostName) {
 		await db.read();
 		const {
 			users,
@@ -82,7 +82,7 @@ class Socket {
 						? `${user.firstname} ${user.lastname}`
 						: `${friend.firstname} ${friend.lastname}`,
 				text: message.text,
-				img: message.img,
+				img: message.img?.map((image) => `${fullHostName}/images/${image}`),
 				time,
 			};
 
@@ -99,13 +99,13 @@ class Socket {
 
 		const chatFriend = new UserMiniModel({
 			id: friend.id,
-			avatar: friend.avatar,
+			avatar: `${fullHostName}/images/${friend.avatar}`,
 			name: `${friend.firstname} ${friend.lastname}`,
 		});
 
 		const chatUser = new UserMiniModel({
 			id: user.id,
-			avatar: user.avatar,
+			avatar: `${fullHostName}/images/${user.avatar}`,
 			name: `${user.firstname} ${user.lastname}`,
 		});
 
@@ -135,7 +135,7 @@ class Socket {
 			chatId,
 			userId,
 			type: 'text',
-			text: text || undefined,
+			text,
 			img,
 		});
 
@@ -162,7 +162,7 @@ class Socket {
 		return newMessage.id;
 	}
 
-	async getComments(postId) {
+	async getComments(postId, fullHostName) {
 		await db.read();
 		const { comments, users } = db.data;
 
@@ -172,7 +172,7 @@ class Socket {
 				const author = users.find((user) => user.id === comment.authorId);
 				const newAuthor = new UserMiniModel({
 					id: author.id,
-					avatar: author.avatar,
+					avatar: `${fullHostName}/images/${author.avatar}`,
 					name: `${author.firstname} ${author.lastname}`,
 				});
 

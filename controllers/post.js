@@ -1,12 +1,16 @@
+import sharp from "sharp";
+import {join} from "node:path";
 import db from "../database/database.js";
 import PostModel from "../models/post.js";
 import { UserMiniModel } from "../models/user.js";
 import sortByCreatedAt from "../helpers/sortByCreatedAt.js";
+import {filesDir} from "../storage/storage.js";
 
 class Post {
 	async getPosts(req, res) {
 		try {
-			const { userId } = req.query;
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const { userId, page, limit } = req.query;
 
 			await db.read();
 			const {
@@ -43,13 +47,18 @@ class Post {
 
 					return {
 						...post,
+						img: post.img?.map((image) => `${fullHostName}/images/${image}`),
 						authorId: undefined,
-						author,
+						author: {...author, avatar: `${fullHostName}/images/${author.avatar}`},
 					};
 				})
 				.sort(sortByCreatedAt);
 
-			return res.json(postsFromDb);
+			const startIndex = page * limit;
+			const endIndex = Math.min(startIndex + limit, postsFromDb.length - 1);
+			let endReached = endIndex === postsFromDb.length - 1;
+
+			return res.json({posts: postsFromDb.slice(startIndex, endIndex), endReached});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -88,7 +97,21 @@ class Post {
 
 	async postPosts(req, res) {
 		try {
-			const { text, authorId, img, profileId } = req.body;
+			const { text, authorId, profileId } = req.body;
+			const files = req.files;
+
+			const img = [];
+
+			for (const { buffer, originalname, fieldname } of files) {
+				const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+				const ref = `${fieldname}-${uniqueSuffix}${originalname}.webp`;
+
+				await sharp(buffer)
+					.webp({ quality: 20 })
+					.toFile(join(filesDir, ref));
+
+				img.push(ref);
+			}
 
 			await db.read();
 			const {

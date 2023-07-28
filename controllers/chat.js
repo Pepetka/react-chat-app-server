@@ -48,6 +48,7 @@ class Chat {
 
 	async getChats(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, search = '' } = req.query;
 
 			await db.read();
@@ -73,7 +74,7 @@ class Chat {
 
 					const chatUser = new UserMiniModel({
 						id: user.id,
-						avatar: user.avatar,
+						avatar: `${fullHostName}/images/${user.avatar}`,
 						name: `${user.firstname} ${user.lastname}`,
 					})
 
@@ -81,7 +82,7 @@ class Chat {
 						id: chatId,
 						user: chatUser,
 						createdAt,
-						lastMessage: lastMessageFromDB.text,
+						lastMessage: lastMessageFromDB.text || '[image]',
 					};
 				})
 				.filter(this.#searchFilter(search))

@@ -38,8 +38,7 @@ class Auth {
 
 			const token = jwt.sign(
 				{ id: newUser.id, username: newUser.username },
-				process.env.SECRET_KEY,
-				{ expiresIn: "7d" }
+				process.env.SECRET_KEY
 			)
 
 			newUser.token = token;
@@ -76,8 +75,7 @@ class Auth {
 
 			const token = jwt.sign(
 				{ id: userFromBd.id, username: userFromBd.username },
-				process.env.SECRET_KEY,
-				{ expiresIn: "7d" }
+				process.env.SECRET_KEY
 			)
 
 			userFromBd.token = token;
