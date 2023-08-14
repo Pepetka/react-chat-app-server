@@ -1,10 +1,10 @@
-import db from "../database/database.js";
-import {UserMiniModel} from "../models/user.js";
-import sortByTime from "../helpers/sortByTime.js";
-import sortByDate from "../helpers/sortByDate.js";
-import MessageModel from "../models/message.js";
-import getCurrentDate from "../helpers/getCurrentDate.js";
-import CommentModel from "../models/comment.js";
+import db from '../database/database.js';
+import { UserMiniModel } from '../models/user.js';
+import sortByTime from '../helpers/sortByTime.js';
+import sortByDate from '../helpers/sortByDate.js';
+import MessageModel from '../models/message.js';
+import getCurrentDate from '../helpers/getCurrentDate.js';
+import CommentModel from '../models/comment.js';
 
 class Socket {
 	#onlineUsers = new Set();
@@ -37,12 +37,7 @@ class Socket {
 
 	async getChatMessages({ chatId, userId, friendId }, fullHostName) {
 		await db.read();
-		const {
-			users,
-			messages,
-			'chat-members': chatMembers,
-			chats,
-		} = db.data;
+		const { users, messages, 'chat-members': chatMembers, chats } = db.data;
 
 		if (!chats.find((chat) => chat.id === chatId)) {
 			const friend = users.find((user) => user.id === friendId);
@@ -72,7 +67,7 @@ class Socket {
 
 			const array = message.createdAt.split(' ')[0].split(':');
 
-			const time = array[0] + ':' + array[1];
+			const time = `${array[0]}:${array[1]}`;
 			const date = message.createdAt.split(' ')[1];
 
 			const currentData = {
@@ -124,12 +119,7 @@ class Socket {
 
 	async postChatMessages({ chatId, userId, friendId, text, img }) {
 		await db.read();
-		const {
-			users,
-			messages,
-			chats,
-			'chat-members': chatMembers,
-		} = db.data;
+		const { users, messages, chats, 'chat-members': chatMembers } = db.data;
 
 		const newMessage = new MessageModel({
 			chatId,
@@ -152,8 +142,8 @@ class Socket {
 			});
 
 			chatMembers.push(
-				{ userId: userId, chatId, createdAt: getCurrentDate() },
-				{ userId: friendId, chatId, createdAt: getCurrentDate() }
+				{ userId, chatId, createdAt: getCurrentDate() },
+				{ userId: friendId, chatId, createdAt: getCurrentDate() },
 			);
 		}
 
@@ -208,7 +198,9 @@ class Socket {
 		await db.read();
 		const { comments } = db.data;
 
-		const deleteCommentIndex = comments.findIndex((comment) => comment.id === commentId);
+		const deleteCommentIndex = comments.findIndex(
+			(comment) => comment.id === commentId,
+		);
 
 		comments.splice(deleteCommentIndex, 1);
 

@@ -1,4 +1,4 @@
-import dateToMilliseconds from "./dateToMilliseconds.js";
+import dateToMilliseconds from './dateToMilliseconds.js';
 
 const sortByDate = (prev, current, direction = 'dawn') => {
 	const prevDate = dateToMilliseconds(prev);

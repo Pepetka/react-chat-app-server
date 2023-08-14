@@ -11,7 +11,7 @@
       "age": 22,
       "createdAt": "05.06.2022",
       "avatar": "3100405.png",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5MDQzOTEwNX0.EciuafE1W8Q49JFRGn9cDBq5du4tYGYSX144tLGmEl0"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5MTg0MDEwMX0.vizS5O62qXkKjJfps1tTtLS09X_UiQh2L60zmr9A-2A"
     },
     {
       "id": "6cbdb794",
@@ -40,7 +40,7 @@
     },
     {
       "id": "6cbdb796",
-      "username": "user1",
+      "username": "user2",
       "password": "$2a$10$MzPVo4pb4un6hn4ZwRnWGuJIB9EGWjHh2kx9Y77knw43TUQ3.ewgq",
       "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
       "firstname": "Oleg",
@@ -52,7 +52,7 @@
     },
     {
       "id": "6cbdb797",
-      "username": "user1",
+      "username": "user3",
       "password": "$2a$10$X95yMJzLIYI55laW7JNqHu5PBrwMY.m9C/vAA30hB02Uf79rdL6rK",
       "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
       "firstname": "Vlad",
@@ -64,7 +64,7 @@
     },
     {
       "id": "6cbdb798",
-      "username": "user1",
+      "username": "user4",
       "password": "$2a$10$CdXmQE5.2EV7GdRcjEGQgOfwXmj9/JwaV4MEAzPkzqA02Genyks7u",
       "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
       "firstname": "Max",
@@ -76,7 +76,7 @@
     },
     {
       "id": "6cbdb799",
-      "username": "user1",
+      "username": "user4",
       "password": "$2a$10$3pbZDFNuUeMuY5pTjuw/yuaxS86MlA6/MQJVZqee8KV.0zEyxlZte",
       "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
       "firstname": "Den",
@@ -88,7 +88,7 @@
     },
     {
       "id": "6cbdb800",
-      "username": "user1",
+      "username": "user4",
       "password": "$2a$10$DVDRrzWJA3FjrmgXVOPbde5ElZqzgqtBic3jbTiBpZOlWlVhWdt3W",
       "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
       "firstname": "Vlad",
@@ -229,6 +229,46 @@
       "userId": "6cbdb793",
       "followerId": "6cbdb794",
       "createdAt": "04.07.2023"
+    },
+    {
+      "userId": "2680daf5-d5e0-499e-9142-7e2bf2c2ebbf",
+      "followerId": "585685dd-ebb2-4b04-8f59-554568d5b04c",
+      "createdAt": "12.08.2023"
+    },
+    {
+      "userId": "6e421b39-3151-42d0-9caf-856fd03d4dae",
+      "followerId": "e37e9082-ebe6-4a3d-9938-98c042f54390",
+      "createdAt": "12.08.2023"
+    },
+    {
+      "userId": "72bb212b-476c-40c8-a015-43d9a31e200b",
+      "followerId": "33dd7088-5f4a-40ea-a625-8851994980d7",
+      "createdAt": "12.08.2023"
+    },
+    {
+      "userId": "22f27d62-2b98-4d18-bbb3-adb4a5c30818",
+      "followerId": "4aa76e4c-0071-412f-b531-4417db5f0d1d",
+      "createdAt": "12.08.2023"
+    },
+    {
+      "userId": "08f6e588-d228-4f27-bff5-2d841a5245a3",
+      "followerId": "b1f37b33-3bdc-49c5-8343-20c4fb9ac9a0",
+      "createdAt": "12.08.2023"
+    },
+    {
+      "userId": "73a93f61-4100-41a4-af61-54e12f19bc0e",
+      "followerId": "65c559e8-740c-420b-ae16-0e5192baf6e3",
+      "createdAt": "13.08.2023"
+    },
+    {
+      "userId": "d051c187-eae5-4ae9-8456-fb9fe0c16d57",
+      "followerId": "f3dbe328-b90f-4211-a00e-846a933377d5",
+      "createdAt": "13.08.2023"
+    },
+    {
+      "userId": "925228aa-7106-48ee-be2f-f90e32f02ddc",
+      "followerId": "48ba8c0f-7300-46bb-8264-1bd27ee19d30",
+      "createdAt": "13.08.2023"
     }
   ],
   "posts": [
@@ -501,30 +541,8 @@
       "postId": "188e1feb-9d72-47d5-bb5f-e8882256a68c"
     }
   ],
-  "post-likes": [
-    {
-      "userId": "6cbdb793",
-      "postId": "fa999cdf-d236-4c21-b1c6-86ac327a2bdb"
-    },
-    {
-      "userId": "6cbdb793",
-      "postId": "cb59c390-e3dd-4bb3-a376-cdaf5f099564"
-    },
-    {
-      "userId": "6cbdb793",
-      "postId": "c88526f9-fbce-4a76-af3a-c83288f42ea3"
-    },
-    {
-      "userId": "6cbdb794",
-      "postId": "fa999cdf-d236-4c21-b1c6-86ac327a2bdb"
-    }
-  ],
-  "post-dislikes": [
-    {
-      "userId": "6cbdb793",
-      "postId": "42e896d8-91a0-4e53-97a8-a9aeadebe42a"
-    }
-  ],
+  "post-likes": [],
+  "post-dislikes": [],
   "comments": [
     {
       "id": "0",

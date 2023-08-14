@@ -1,6 +1,15 @@
-import { v4 as generateId } from "uuid";
+import { v4 as generateId } from 'uuid';
 
-function UserModel({username, password, firstname, lastname, email, age, avatar, token}) {
+function UserModel({
+	username,
+	password,
+	firstname,
+	lastname,
+	email,
+	age,
+	avatar,
+	token,
+}) {
 	this.username = username;
 	this.password = password;
 	this.id = generateId();
@@ -13,13 +22,10 @@ function UserModel({username, password, firstname, lastname, email, age, avatar,
 	this.token = token;
 }
 
-function UserMiniModel({id, avatar, name}) {
+function UserMiniModel({ id, avatar, name }) {
 	this.id = id;
 	this.name = name;
 	this.avatar = avatar;
 }
 
-export {
-	UserModel,
-	UserMiniModel
-};
+export { UserModel, UserMiniModel };

@@ -1,7 +1,7 @@
-import db from "../database/database.js";
-import sortByDate from "../helpers/sortByCreatedAt.js";
-import { UserMiniModel } from "../models/user.js";
-import CommentModel from "../models/comment.js";
+import db from '../database/database.js';
+import sortByDate from '../helpers/sortByCreatedAt.js';
+import { UserMiniModel } from '../models/user.js';
+import CommentModel from '../models/comment.js';
 
 class Comment {
 	async getComments(req, res) {
@@ -36,14 +36,16 @@ class Comment {
 		}
 	}
 
-	async putComments(req, res) {
+	async deleteComments(req, res) {
 		try {
-			const { commentId } = req.query;
+			const { commentId } = req.body;
 
 			await db.read();
 			const { comments } = db.data;
 
-			const deleteCommentIndex = comments.findIndex((comment) => comment.id === commentId);
+			const deleteCommentIndex = comments.findIndex(
+				(comment) => comment.id === commentId,
+			);
 
 			comments.splice(deleteCommentIndex, 1);
 

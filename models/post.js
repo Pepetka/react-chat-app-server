@@ -1,7 +1,7 @@
-import { v4 as createId } from "uuid";
-import getCurrentDate from "../helpers/getCurrentDate.js";
+import { v4 as createId } from 'uuid';
+import getCurrentDate from '../helpers/getCurrentDate.js';
 
-function PostModel({authorId, text, img}) {
+function PostModel({ authorId, text, img }) {
 	this.authorId = authorId;
 	this.text = text;
 	this.img = img;

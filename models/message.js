@@ -1,7 +1,7 @@
-import { v4 as createId } from "uuid";
-import getCurrentDate from "../helpers/getCurrentDate.js";
+import { v4 as createId } from 'uuid';
+import getCurrentDate from '../helpers/getCurrentDate.js';
 
-function MessageModel({chatId, userId, type, text, img}) {
+function MessageModel({ chatId, userId, type, text, img }) {
 	this.id = createId();
 	this.chatId = chatId;
 	this.userId = userId;

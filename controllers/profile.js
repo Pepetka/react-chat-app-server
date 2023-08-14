@@ -1,14 +1,12 @@
-import db from "../database/database.js";
-import { UserMiniModel } from "../models/user.js";
-import getContains from "../helpers/getContains.js";
-import sortByDate from "../helpers/sortByDate.js";
-import { socketController } from "../app.js";
+import db from '../database/database.js';
+import { UserMiniModel } from '../models/user.js';
+import getContains from '../helpers/getContains.js';
+import { socketController } from '../app.js';
 
 class Profile {
-	constructor () {
-		this.postOnline = this.postOnline.bind(this)
-		this.getUsers = this.getUsers.bind(this)
-		this.getGroups = this.getGroups.bind(this)
+	constructor() {
+		this.postOnline = this.postOnline.bind(this);
+		this.getUsers = this.getUsers.bind(this);
 	}
 
 	async profile(req, res) {
@@ -25,28 +23,10 @@ class Profile {
 				return res.status(400).json({ message: 'profile not found' });
 			}
 
-			return res.json({...profile, avatar: `${fullHostName}/images/${profile.avatar}`});
-		} catch (e) {
-			console.log(e);
-			return res.status(500).json({ message: e.message });
-		}
-	}
-
-	async group(req, res) {
-		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
-			const { groupId } = req.query;
-
-			await db.read();
-			const { groups } = db.data;
-
-			const group = groups.find((group) => group.id === groupId);
-
-			if (!group) {
-				return res.status(400).json({ message: 'Group not found' });
-			}
-
-			return res.json({...group, avatar: `${fullHostName}/images/${group.avatar}`});
+			return res.json({
+				...profile,
+				avatar: `${fullHostName}/images/${profile.avatar}`,
+			});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -65,20 +45,28 @@ class Profile {
 			const { friends, followers } = db.data;
 
 			const friend = friends.find(
-				(friend) => (friend.friendId === friendId && friend.userId === userId) || (friend.friendId === userId && friend.userId === friendId)
+				(friend) =>
+					(friend.friendId === friendId && friend.userId === userId) ||
+					(friend.friendId === userId && friend.userId === friendId),
 			);
 
 			if (friend) {
 				return res.json({ relations: 'friend' });
 			}
 
-			const follower = followers.find((follower) => follower.userId === userId && follower.followerId === friendId);
+			const follower = followers.find(
+				(follower) =>
+					follower.userId === userId && follower.followerId === friendId,
+			);
 
 			if (follower) {
 				return res.json({ relations: 'follower' });
 			}
 
-			const following = followers.find((follower) => follower.followerId === userId && follower.userId === friendId);
+			const following = followers.find(
+				(follower) =>
+					follower.followerId === userId && follower.userId === friendId,
+			);
 
 			if (following) {
 				return res.json({ relations: 'following' });
@@ -98,11 +86,17 @@ class Profile {
 			await db.read();
 			const { followers, 'group-members': groupMembers } = db.data;
 
-			const followersFromDb = followers.filter((follower) => follower.userId === userId);
+			const followersFromDb = followers.filter(
+				(follower) => follower.userId === userId,
+			);
 
-			const followingFromDb = followers.filter((follower) => follower.followerId === userId);
+			const followingFromDb = followers.filter(
+				(follower) => follower.followerId === userId,
+			);
 
-			const groupsFromDb = groupMembers.filter((group) => group.userId === userId);
+			const groupsFromDb = groupMembers.filter(
+				(group) => group.userId === userId,
+			);
 
 			return res.json({
 				followersNum: String(followersFromDb.length),
@@ -124,7 +118,9 @@ class Profile {
 			const { friends, users } = db.data;
 
 			const friendsFromDb = friends
-				.filter((friend) => friend.userId === userId || friend.friendId === userId)
+				.filter(
+					(friend) => friend.userId === userId || friend.friendId === userId,
+				)
 				.map((friend) => {
 					const user = users.find((user) =>
 						userId === friend.friendId
@@ -135,7 +131,7 @@ class Profile {
 					const newUserMiniModel = new UserMiniModel({
 						id: user.id,
 						avatar: `${fullHostName}/images/${user.avatar}`,
-						name: `${user.firstname} ${user.lastname}`
+						name: `${user.firstname} ${user.lastname}`,
 					});
 
 					return newUserMiniModel;
@@ -156,12 +152,14 @@ class Profile {
 			const { friends, followers } = db.data;
 
 			const friendIndex = friends.findIndex(
-				(friend) => (friend.userId === userId && friend.friendId === friendId) || (friend.userId === friendId && friend.friendId === userId)
+				(friend) =>
+					(friend.userId === userId && friend.friendId === friendId) ||
+					(friend.userId === friendId && friend.friendId === userId),
 			);
 
 			if (friendIndex >= 0) {
 				const newFollower = {
-					userId: userId,
+					userId,
 					followerId: friendId,
 					createdAt: new Date().toLocaleDateString(),
 				};
@@ -174,7 +172,10 @@ class Profile {
 				return res.json({ message: 'Now unfriend' });
 			}
 
-			const followerIndex = followers.findIndex((follower) => follower.userId === userId && follower.followerId === friendId);
+			const followerIndex = followers.findIndex(
+				(follower) =>
+					follower.userId === userId && follower.followerId === friendId,
+			);
 
 			if (followerIndex >= 0) {
 				const newFriend = {
@@ -191,7 +192,10 @@ class Profile {
 				return res.json({ message: 'Now friends' });
 			}
 
-			const followingIndex = followers.findIndex((follower) => follower.followerId === userId && follower.userId === friendId);
+			const followingIndex = followers.findIndex(
+				(follower) =>
+					follower.followerId === userId && follower.userId === friendId,
+			);
 
 			if (followingIndex >= 0) {
 				followers.splice(followingIndex, 1);
@@ -266,7 +270,11 @@ class Profile {
 	}
 
 	#searchFilter(search) {
-		return ({ name }) => getContains(name, search);
+		return ({ username, firstname, lastname, email }) =>
+			getContains(username, search) ||
+			getContains(firstname, search) ||
+			getContains(lastname, search) ||
+			getContains(email, search);
 	}
 
 	async getUsers(req, res) {
@@ -277,55 +285,70 @@ class Profile {
 			await db.read();
 			const { friends, followers, users } = db.data;
 
-			const friendsFromDb = friends.filter((friend) => friend.userId === userId || friend.friendId === userId);
+			const friendsFromDb = friends.filter(
+				(friend) => friend.userId === userId || friend.friendId === userId,
+			);
 
-			const followersFromDb = followers.filter((follower) => follower.userId === userId);
+			const followersFromDb = followers.filter(
+				(follower) => follower.userId === userId,
+			);
 
-			const followingFromDb = followers.filter((follower) => follower.followerId === userId);
+			const followingFromDb = followers.filter(
+				(follower) => follower.followerId === userId,
+			);
 
 			const Friends = friendsFromDb
 				.map((friend) => {
-					const currentId = friend.userId === userId ? friend.friendId : friend.userId;
-
+					const currentId =
+						friend.userId === userId ? friend.friendId : friend.userId;
 					const user = users.find((user) => user.id === currentId);
 
+					return user;
+				})
+				.filter(this.#searchFilter(search))
+				.map((user) => {
 					const userMini = new UserMiniModel({
 						id: user.id,
 						avatar: `${fullHostName}/images/${user.avatar}`,
-						name: `${user.firstname} ${user.lastname}`
+						name: `${user.firstname} ${user.lastname}`,
 					});
 
 					return userMini;
-				})
-				.filter(this.#searchFilter(search));
+				});
 
 			const Followers = followersFromDb
 				.map((follower) => {
 					const user = users.find((user) => user.id === follower.followerId);
 
+					return user;
+				})
+				.filter(this.#searchFilter(search))
+				.map((user) => {
 					const userMini = new UserMiniModel({
 						id: user.id,
 						avatar: `${fullHostName}/images/${user.avatar}`,
-						name: `${user.firstname} ${user.lastname}`
+						name: `${user.firstname} ${user.lastname}`,
 					});
 
 					return userMini;
-				})
-				.filter(this.#searchFilter(search));
+				});
 
 			const Following = followingFromDb
 				.map((follower) => {
 					const user = users.find((user) => user.id === follower.userId);
 
+					return user;
+				})
+				.filter(this.#searchFilter(search))
+				.map((user) => {
 					const userMini = new UserMiniModel({
 						id: user.id,
 						avatar: `${fullHostName}/images/${user.avatar}`,
-						name: `${user.firstname} ${user.lastname}`
+						name: `${user.firstname} ${user.lastname}`,
 					});
 
 					return userMini;
-				})
-				.filter(this.#searchFilter(search));
+				});
 
 			const Others = users
 				.filter((user) => {
@@ -341,16 +364,16 @@ class Profile {
 						!followingFromDb.find((follower) => follower.userId === user.id)
 					);
 				})
+				.filter(this.#searchFilter(search))
 				.map(({ id, avatar, firstname, lastname }) => {
 					const userMini = new UserMiniModel({
-						id: id,
+						id,
 						avatar: `${fullHostName}/images/${avatar}`,
-						name: `${firstname} ${lastname}`
+						name: `${firstname} ${lastname}`,
 					});
 
 					return userMini;
-				})
-				.filter(this.#searchFilter(search));
+				});
 
 			const response = {
 				Followers: Followers.length === 0 ? undefined : Followers,
@@ -360,57 +383,6 @@ class Profile {
 			};
 
 			return res.json(response);
-		} catch (e) {
-			console.log(e);
-			return res.status(500).json({ message: e.message });
-		}
-	}
-
-	async getGroups(req, res) {
-		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
-			const { userId, search = '' } = req.query;
-
-			await db.read();
-			const { groups, 'group-members': groupMembers} = db.data;
-
-			const response = groupMembers
-				.filter((group) => group.userId === userId)
-				.map((currentGroup) => {
-					const groupId = currentGroup.groupId;
-
-					const groupData = groups.find((group) => group.id === groupId);
-
-					return {
-						...groupData,
-						avatar: `${fullHostName}/images/${groupData.avatar}`,
-						createdAt: groupData.createdAt.split(' ')[1],
-					};
-				})
-				.filter(this.#searchFilter(search))
-				.sort((prev, current) => sortByDate(prev.createdAt, current.createdAt));
-
-			return res.json(response);
-		} catch (e) {
-			console.log(e);
-			return res.status(500).json({ message: e.message });
-		}
-	}
-
-	async groupMembers(req, res) {
-		try {
-			const { userId, groupId } = req.query;
-
-			await db.read();
-			const { 'group-members': groupMembers } = db.data;
-
-			const member = groupMembers.find((groupMember) => groupMember.userId === userId && groupMember.groupId === groupId);
-
-			if (!member) {
-				return res.status(400).json({ message: "Group member not found" });
-			}
-
-			return res.json(member);
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });

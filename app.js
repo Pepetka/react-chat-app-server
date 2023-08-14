@@ -1,16 +1,14 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import router from "./router/index.js";
-// import clearOnline from "./helpers/clearOnline.js";
-import {verificationAuth, verificationAuthSocket} from "./middleware/auth.js";
-import {Server} from "socket.io";
-import {writeFile} from "node:fs";
-import http from "http";
-import SocketController from "./controllers/socket.js";
-import {filesDir} from "./storage/storage.js";
-import {join} from "node:path";
-import sharp from "sharp";
+import http from 'http';
+import { join } from 'node:path';
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import { Server } from 'socket.io';
+import sharp from 'sharp';
+import router from './router/index.js';
+import { verificationAuth, verificationAuthSocket } from './middleware/auth.js';
+import SocketController from './controllers/socket.js';
+import { filesDir } from './storage/storage.js';
 
 dotenv.config();
 // await clearOnline();
@@ -25,7 +23,7 @@ app.use('/', router);
 const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
-		origin: "*",
+		origin: '*',
 	},
 });
 io.use(verificationAuthSocket);
@@ -33,7 +31,9 @@ io.use(verificationAuthSocket);
 const socketController = new SocketController();
 
 io.on('connection', (socket) => {
-	const fullHostName = `${socket.handshake.protocol || 'http'}://${socket.handshake.headers.host}`;
+	const fullHostName = `${socket.handshake.protocol || 'http'}://${
+		socket.handshake.headers.host
+	}`;
 	console.log(`A user connected: ${socket.id}`);
 	socketController.connectedUsers = socket;
 
@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
 		try {
 			const comments = await socketController.getComments(postId, fullHostName);
 
-			socket.emit('comments', {postId: postId, comments});
+			socket.emit('comments', { postId, comments });
 		} catch (e) {
 			console.log(e);
 			return new Error(e.message);
@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
 			const newComment = await socketController.addComment(data);
 			const comments = await socketController.getComments(data.postId);
 
-			io.emit('comments', {postId: data.postId, comments});
+			io.emit('comments', { postId: data.postId, comments });
 
 			cb(newComment);
 		} catch (e) {
@@ -82,12 +82,14 @@ io.on('connection', (socket) => {
 
 	socket.on('delete_comment', async (data, cb) => {
 		try {
-			const deleteCommentId = await socketController.deleteComment(data.commentId);
+			const deleteCommentId = await socketController.deleteComment(
+				data.commentId,
+			);
 			const comments = await socketController.getComments(data.postId);
 
-			io.emit('comments', {postId: data.postId, comments});
+			io.emit('comments', { postId: data.postId, comments });
 
-			cb(deleteCommentId)
+			cb(deleteCommentId);
 		} catch (e) {
 			console.log(e);
 			return new Error(e.message);
@@ -95,21 +97,28 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('typing', (chatId) => {
-		socket.to(`chat: ${chatId}`).emit('typing', {friendId: socket.userId, isTyping: true});
+		socket
+			.to(`chat: ${chatId}`)
+			.emit('typing', { friendId: socket.userId, isTyping: true });
 	});
 
 	socket.on('stop_typing', (chatId) => {
-		socket.to(`chat: ${chatId}`).emit('typing', {friendId: socket.userId, isTyping: false});
+		socket
+			.to(`chat: ${chatId}`)
+			.emit('typing', { friendId: socket.userId, isTyping: false });
 	});
 
 	socket.on('get_messages', async (chatData) => {
 		try {
-			const messages = await socketController.getChatMessages(chatData, fullHostName);
+			const messages = await socketController.getChatMessages(
+				chatData,
+				fullHostName,
+			);
 
 			socket.emit('messages', messages);
 		} catch (e) {
-			console.log(e)
-			return new Error(e.message)
+			console.log(e);
+			return new Error(e.message);
 		}
 	});
 
@@ -119,12 +128,12 @@ io.on('connection', (socket) => {
 
 			if (chatData.files) {
 				for (const { name, file } of chatData.files) {
-					const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+					const uniqueSuffix = `${Date.now()}-${Math.round(
+						Math.random() * 1e9,
+					)}`;
 					const ref = `images-${uniqueSuffix}${name}.webp`;
 
-					await sharp(file)
-						.webp({ quality: 20 })
-						.toFile(join(filesDir, ref));
+					await sharp(file).webp({ quality: 20 }).toFile(join(filesDir, ref));
 
 					images.push(ref);
 				}
@@ -138,8 +147,8 @@ io.on('connection', (socket) => {
 			const messages = await socketController.getChatMessages(chatData);
 			io.to(`chat: ${chatData.chatId}`).emit('messages', messages);
 		} catch (e) {
-			console.log(e)
-			return new Error(e.message)
+			console.log(e);
+			return new Error(e.message);
 		}
 	});
 
@@ -152,6 +161,4 @@ io.on('connection', (socket) => {
 });
 
 export default server;
-export {
-	socketController,
-};
+export { socketController };

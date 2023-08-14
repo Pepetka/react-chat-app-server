@@ -1,10 +1,10 @@
-import sharp from "sharp";
-import {join} from "node:path";
-import db from "../database/database.js";
-import PostModel from "../models/post.js";
-import { UserMiniModel } from "../models/user.js";
-import sortByCreatedAt from "../helpers/sortByCreatedAt.js";
-import {filesDir} from "../storage/storage.js";
+import { join } from 'node:path';
+import sharp from 'sharp';
+import db from '../database/database.js';
+import PostModel from '../models/post.js';
+import { UserMiniModel } from '../models/user.js';
+import sortByCreatedAt from '../helpers/sortByCreatedAt.js';
+import { filesDir } from '../storage/storage.js';
 
 class Post {
 	async getPosts(req, res) {
@@ -13,12 +13,7 @@ class Post {
 			const { userId, page, limit } = req.query;
 
 			await db.read();
-			const {
-				'user-posts': userPosts,
-				posts,
-				users,
-				groups,
-			} = db.data;
+			const { 'user-posts': userPosts, posts, users, groups } = db.data;
 
 			const userPostsFromDb = userPosts
 				.filter((post) => post.userId === userId)
@@ -49,25 +44,31 @@ class Post {
 						...post,
 						img: post.img?.map((image) => `${fullHostName}/images/${image}`),
 						authorId: undefined,
-						author: {...author, avatar: `${fullHostName}/images/${author.avatar}`},
+						author: {
+							...author,
+							avatar: `${fullHostName}/images/${author.avatar}`,
+						},
 					};
 				})
 				.sort(sortByCreatedAt);
 
-			const startIndex = page * limit;
-			const endIndex = Math.min(startIndex + limit, postsFromDb.length - 1);
-			let endReached = endIndex === postsFromDb.length - 1;
+			const startIndex = 0;
+			const endIndex = Math.min(page * limit + limit, postsFromDb.length);
+			const endReached = endIndex === postsFromDb.length;
 
-			return res.json({posts: postsFromDb.slice(startIndex, endIndex), endReached});
+			return res.json({
+				posts: postsFromDb.slice(startIndex, endIndex),
+				endReached,
+			});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
 		}
 	}
 
-	async putPosts(req, res) {
+	async deletePosts(req, res) {
 		try {
-			const { postId, userId } = req.query;
+			const { postId, userId } = req.body;
 
 			await db.read();
 			const { 'user-posts': userPosts, posts } = db.data;
@@ -76,9 +77,13 @@ class Post {
 
 			const deletePostIndex = posts.findIndex((post) => post.id === postId);
 
-			const userPostsFromBd = userPosts.filter((userPost) => userPost.postId === postId);
+			const userPostsFromBd = userPosts.filter(
+				(userPost) => userPost.postId === postId,
+			);
 
-			const deleteUserPostIndex = userPosts.findIndex((userPost) => userPost.postId === postId && userPost.userId === userId);
+			const deleteUserPostIndex = userPosts.findIndex(
+				(userPost) => userPost.postId === postId && userPost.userId === userId,
+			);
 
 			if (userPostsFromBd.length === 1) {
 				posts.splice(deletePostIndex, 1);
@@ -103,12 +108,10 @@ class Post {
 			const img = [];
 
 			for (const { buffer, originalname, fieldname } of files) {
-				const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+				const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
 				const ref = `${fieldname}-${uniqueSuffix}${originalname}.webp`;
 
-				await sharp(buffer)
-					.webp({ quality: 20 })
-					.toFile(join(filesDir, ref));
+				await sharp(buffer).webp({ quality: 20 }).toFile(join(filesDir, ref));
 
 				img.push(ref);
 			}
@@ -120,12 +123,14 @@ class Post {
 				'group-members': groupMembers,
 			} = db.data;
 
-			const groupMember = groupMembers.find((member) => member.userId === authorId && member.groupId === profileId);
+			const groupMember = groupMembers.find(
+				(member) => member.userId === authorId && member.groupId === profileId,
+			);
 
 			const newPost = new PostModel({
 				authorId: groupMember ? groupMember.groupId : authorId,
 				text,
-				img
+				img,
 			});
 
 			const newUserPost = {
@@ -158,19 +163,30 @@ class Post {
 				comments,
 			} = db.data;
 
-			const postLikesFromDb = postLikes.filter((like) => like.postId === String(postId));
+			const postLikesFromDb = postLikes.filter(
+				(like) => like.postId === String(postId),
+			);
 
-			const postDislikesFromDb = postDislikes.filter((dislike) => dislike.postId === String(postId));
+			const postDislikesFromDb = postDislikes.filter(
+				(dislike) => dislike.postId === String(postId),
+			);
 
-			const postCommentsFromDb = comments.filter((comment) => comment.postId === String(postId));
+			const postCommentsFromDb = comments.filter(
+				(comment) => comment.postId === String(postId),
+			);
 
 			const postFromDb = posts.find((post) => post.id === String(postId));
 
-			const postSharedFromDb = userPosts.filter((post) => post.postId === String(postId) && postFromDb.authorId !== post.userId);
+			const postSharedFromDb = userPosts.filter(
+				(post) =>
+					post.postId === String(postId) && postFromDb.authorId !== post.userId,
+			);
 
 			const response = {
 				likes: String(postLikesFromDb.length),
-				isLiked: Boolean(postLikesFromDb.find((like) => like.userId === userId)),
+				isLiked: Boolean(
+					postLikesFromDb.find((like) => like.userId === userId),
+				),
 				dislikes: String(postDislikesFromDb.length),
 				isDisliked: Boolean(
 					postDislikesFromDb.find((dislike) => dislike.userId === userId),
@@ -194,14 +210,17 @@ class Post {
 			const { postId, userId } = req.body;
 
 			await db.read();
-			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } = db.data;
+			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } =
+				db.data;
 
 			const newPostLikes = {
 				userId,
 				postId,
 			};
 
-			const postLikesIndex = postLikes.findIndex((like) => like.userId === userId && like.postId === String(postId));
+			const postLikesIndex = postLikes.findIndex(
+				(like) => like.userId === userId && like.postId === String(postId),
+			);
 
 			if (postLikesIndex >= 0) {
 				postLikes.splice(postLikesIndex, 1);
@@ -209,7 +228,10 @@ class Post {
 				postLikes.push(newPostLikes);
 			}
 
-			const postDislikesIndex = postDislikes.findIndex((dislike) => dislike.postId === String(postId) && dislike.userId === userId);
+			const postDislikesIndex = postDislikes.findIndex(
+				(dislike) =>
+					dislike.postId === String(postId) && dislike.userId === userId,
+			);
 
 			postDislikes.splice(postDislikesIndex, 1);
 
@@ -227,14 +249,18 @@ class Post {
 			const { postId, userId } = req.body;
 
 			await db.read();
-			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } = db.data;
+			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } =
+				db.data;
 
 			const newPostDislikes = {
 				userId,
-				postId: postId,
+				postId,
 			};
 
-			const postDislikesIndex = postDislikes.findIndex((dislike) => dislike.userId === userId && dislike.postId === String(postId));
+			const postDislikesIndex = postDislikes.findIndex(
+				(dislike) =>
+					dislike.userId === userId && dislike.postId === String(postId),
+			);
 
 			if (postDislikesIndex >= 0) {
 				postDislikes.splice(postDislikesIndex, 1);
@@ -242,7 +268,9 @@ class Post {
 				postDislikes.push(newPostDislikes);
 			}
 
-			const postLikesIndex = postLikes.findIndex((like) => like.postId === String(postId) && like.userId === userId);
+			const postLikesIndex = postLikes.findIndex(
+				(like) => like.postId === String(postId) && like.userId === userId,
+			);
 
 			postLikes.splice(postLikesIndex, 1);
 
@@ -262,7 +290,9 @@ class Post {
 			await db.read();
 			const { 'user-posts': userPosts, posts } = db.data;
 
-			const userPostFromDb = userPosts.find((post) => post.userId === userId && post.postId === String(postId));
+			const userPostFromDb = userPosts.find(
+				(post) => post.userId === userId && post.postId === String(postId),
+			);
 
 			const newUserPost = {
 				userId,

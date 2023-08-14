@@ -1,7 +1,11 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const verificationAuth = (req, res, next) => {
-	if (req.originalUrl === '/login' || req.originalUrl === '/register' || req.originalUrl.includes('/images/')) {
+	if (
+		req.originalUrl === '/login' ||
+		req.originalUrl === '/register' ||
+		req.originalUrl.includes('/images/')
+	) {
 		return next();
 	}
 
@@ -15,13 +19,13 @@ const verificationAuth = (req, res, next) => {
 		const verifiedUser = jwt.verify(token, process.env.SECRET_KEY);
 
 		if (!verifiedUser) {
-			return res.status(401).json({ message: 'Unauthorized request' })
+			return res.status(401).json({ message: 'Unauthorized request' });
 		}
 
 		req.user = verifiedUser;
 		return next();
 	} catch (e) {
-		console.log(e)
+		console.log(e);
 		return res.status(400).json({ message: 'Invalid token' });
 	}
 };
@@ -43,12 +47,9 @@ const verificationAuthSocket = (socket, next) => {
 		socket.user = verifiedUser;
 		return next();
 	} catch (e) {
-		console.log(e)
+		console.log(e);
 		return next(new Error('Invalid token'));
 	}
 };
 
-export {
-	verificationAuth,
-	verificationAuthSocket,
-};
+export { verificationAuth, verificationAuthSocket };
