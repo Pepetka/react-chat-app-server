@@ -7,7 +7,7 @@ import { mutationFilter } from '../helpers/mutationFilter.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const file = join(__dirname, 'db.json');
 
-// eslint-disable-next-line no-extend-native
+// eslint-disable-next-line
 Array.prototype.mutationFilter = mutationFilter;
 
 const adapter = new JSONFile(file);
@@ -29,6 +29,6 @@ const defaultData = {
 };
 const db = new Low(adapter, defaultData);
 
-// await db.read();
+await db.read();
 
 export default db;

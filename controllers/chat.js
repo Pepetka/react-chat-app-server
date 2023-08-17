@@ -17,7 +17,7 @@ class Chat {
 		try {
 			const { userId, friendId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { 'chat-members': chatMembers } = db.data;
 
 			const obj = {};
@@ -47,7 +47,7 @@ class Chat {
 		try {
 			const { userId, friendId, chatName } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { chats, 'chat-members': chatMembers, users } = db.data;
 
 			const userChats = chatMembers
@@ -80,7 +80,7 @@ class Chat {
 				},
 			);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(newChat);
 		} catch (e) {
@@ -93,7 +93,7 @@ class Chat {
 		try {
 			const { chatId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { chats, messages, 'chat-members': chatMembers } = db.data;
 
 			chats.mutationFilter((chat) => chat.id !== chatId);
@@ -102,7 +102,7 @@ class Chat {
 
 			chatMembers.mutationFilter((member) => member.chatId !== chatId);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(chatId);
 		} catch (e) {
@@ -125,7 +125,7 @@ class Chat {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, search = '' } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { users, chats, messages, 'chat-members': chatMembers } = db.data;
 
 			const response = chatMembers
@@ -197,7 +197,7 @@ class Chat {
 		try {
 			const { chatId, userId, friendId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { users, messages, chats } = db.data;
 
 			if (!chats.find((chat) => chat.id === chatId)) {
@@ -278,7 +278,7 @@ class Chat {
 		try {
 			const { chatId, userId, friendId, text, img } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { users, messages, chats, 'chat-members': chatMembers } = db.data;
 
 			const newMessage = new MessageModel({
@@ -308,7 +308,7 @@ class Chat {
 				);
 			}
 
-			await db.write();
+			// await db.write();
 
 			return res.json(newMessage.id);
 		} catch (e) {

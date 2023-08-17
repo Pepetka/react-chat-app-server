@@ -4,14 +4,14 @@
       "id": "6cbdb793",
       "username": "admin",
       "password": "$2a$10$MT0lFTYnMvKoMaJeuGalbO5.2GhSyQrBi02KCP2PutQPJLWdza/2u",
-      "status": "Ничего в этой жизни не бывает зря,\nничего в этой жизни не бывает даром",
+      "status": "Ничего в этой жизни не бывает зря,\r\nничего в этой жизни не бывает даром",
       "email": "admin@mail.ru",
       "firstname": "Vlad",
       "lastname": "Kuznetsov",
-      "age": 22,
+      "age": "22",
       "createdAt": "05.06.2022",
       "avatar": "3100405.png",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5MTg0MDEwMX0.vizS5O62qXkKjJfps1tTtLS09X_UiQh2L60zmr9A-2A"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5MjE4MDc3Nn0.Od-__2D5KJQZtE9Y16azIi7brEVs9LFdM1kO5TfjJqs"
     },
     {
       "id": "6cbdb794",
@@ -24,7 +24,7 @@
       "age": 22,
       "createdAt": "05.0.2023",
       "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzk0IiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNjkwNDM5MDE3fQ.3s1ewvS5XaR2mYwAVoyeAvDDElSE6RhHkyg6GiucMZE"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzk0IiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNjkyMTgxNDEwfQ.39ZslG7bidP3teiyBMa8oNdETPTz5A1_mpBtzbYYPgE"
     },
     {
       "id": "6cbdb795",

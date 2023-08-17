@@ -12,7 +12,7 @@ class Post {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, page, limit } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { 'user-posts': userPosts, posts, users, groups } = db.data;
 
 			const userPostsFromDb = userPosts
@@ -70,7 +70,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { 'user-posts': userPosts, posts } = db.data;
 
 			const deletePost = posts.find((post) => post.id === postId);
@@ -91,7 +91,7 @@ class Post {
 
 			userPosts.splice(deleteUserPostIndex, 1);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(deletePost);
 		} catch (e) {
@@ -102,6 +102,7 @@ class Post {
 
 	async postPosts(req, res) {
 		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { text, authorId, profileId } = req.body;
 			const files = req.files;
 
@@ -116,7 +117,7 @@ class Post {
 				img.push(ref);
 			}
 
-			await db.read();
+			// await db.read();
 			const {
 				'user-posts': userPosts,
 				posts,
@@ -141,9 +142,12 @@ class Post {
 			posts.push(newPost);
 			userPosts.push(newUserPost);
 
-			await db.write();
+			// await db.write();
 
-			return res.json(newPost);
+			return res.json({
+				...newPost,
+				img: `${fullHostName}/images/${newPost.img}`,
+			});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -154,7 +158,7 @@ class Post {
 		try {
 			const { postId, userId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const {
 				'user-posts': userPosts,
 				posts,
@@ -209,7 +213,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } =
 				db.data;
 
@@ -235,7 +239,7 @@ class Post {
 
 			postDislikes.splice(postDislikesIndex, 1);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(newPostLikes);
 		} catch (e) {
@@ -248,7 +252,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } =
 				db.data;
 
@@ -274,7 +278,7 @@ class Post {
 
 			postLikes.splice(postLikesIndex, 1);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(newPostDislikes);
 		} catch (e) {
@@ -287,7 +291,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { 'user-posts': userPosts, posts } = db.data;
 
 			const userPostFromDb = userPosts.find(
@@ -303,7 +307,7 @@ class Post {
 				userPosts.push(newUserPost);
 			}
 
-			await db.write();
+			// await db.write();
 
 			return res.json(newUserPost);
 		} catch (e) {

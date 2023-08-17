@@ -22,7 +22,7 @@ class Group {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { groupId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { groups } = db.data;
 
 			const group = groups.find((group) => group.id === groupId);
@@ -46,7 +46,7 @@ class Group {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, name, avatar, description, tags } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { groups, 'group-members': groupMembers } = db.data;
 
 			const newGroup = new GroupModel({
@@ -65,7 +65,7 @@ class Group {
 				role: 'admin',
 			});
 
-			await db.write();
+			// await db.write();
 
 			return res.json({
 				...newGroup,
@@ -81,13 +81,13 @@ class Group {
 		try {
 			const { groupId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { groups, 'group-members': groupMembers } = db.data;
 
 			groups.mutationFilter((group) => group.id !== groupId);
 			groupMembers.mutationFilter((member) => member.groupId !== groupId);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(groupId);
 		} catch (e) {
@@ -101,7 +101,7 @@ class Group {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, search = '' } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { groups, 'group-members': groupMembers } = db.data;
 
 			const response = groupMembers
@@ -131,7 +131,7 @@ class Group {
 		try {
 			const { userId, groupId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { 'group-members': groupMembers } = db.data;
 
 			const member = groupMembers.find(

@@ -21,6 +21,7 @@ router.post('/login', authController.login);
 router.delete('/user', authController.deleteUser);
 
 router.get('/profile', profileController.profile);
+router.put('/profile', upload.single('avatar'), profileController.editProfile);
 router.get('/social', profileController.getSocial);
 router.get('/friends', profileController.getFriends);
 router.post('/friends', profileController.postFriends);

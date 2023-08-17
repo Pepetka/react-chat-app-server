@@ -1,7 +1,10 @@
+import { join } from 'node:path';
+import sharp from 'sharp';
 import db from '../database/database.js';
 import { UserMiniModel } from '../models/user.js';
 import getContains from '../helpers/getContains.js';
 import { socketController } from '../app.js';
+import { filesDir } from '../storage/storage.js';
 
 class Profile {
 	constructor() {
@@ -14,7 +17,7 @@ class Profile {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { profileId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { users } = db.data;
 
 			const profile = users.find((user) => user.id === profileId);
@@ -33,6 +36,48 @@ class Profile {
 		}
 	}
 
+	async editProfile(req, res) {
+		try {
+			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const { status, email, firstname, lastname, age } = req.body;
+			const file = req.file;
+			const { id } = req.user;
+
+			let avatar;
+
+			if (file) {
+				const { buffer, originalname, fieldname } = file;
+				const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+				avatar = `${fieldname}-${uniqueSuffix}${originalname}.webp`;
+				await sharp(buffer)
+					.webp({ quality: 20 })
+					.toFile(join(filesDir, avatar));
+			}
+
+			// await db.read();
+			const { users } = db.data;
+
+			const editableProfile = users.find((user) => user.id === id);
+
+			editableProfile.status = status;
+			if (email) editableProfile.email = email;
+			if (firstname) editableProfile.firstname = firstname;
+			if (lastname) editableProfile.lastname = lastname;
+			if (age) editableProfile.age = age;
+			if (avatar) editableProfile.avatar = avatar;
+
+			// await db.write();
+
+			return res.json({
+				...editableProfile,
+				avatar: `${fullHostName}/images/${editableProfile.avatar}`,
+			});
+		} catch (e) {
+			console.log(e);
+			return res.status(500).json({ message: e.message });
+		}
+	}
+
 	async getRelations(req, res) {
 		try {
 			const { userId, friendId } = req.query;
@@ -41,7 +86,7 @@ class Profile {
 				return res.json({ relations: 'nobody' });
 			}
 
-			await db.read();
+			// await db.read();
 			const { friends, followers } = db.data;
 
 			const friend = friends.find(
@@ -83,7 +128,7 @@ class Profile {
 		try {
 			const { userId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { followers, 'group-members': groupMembers } = db.data;
 
 			const followersFromDb = followers.filter(
@@ -114,7 +159,7 @@ class Profile {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { friends, users } = db.data;
 
 			const friendsFromDb = friends
@@ -148,7 +193,7 @@ class Profile {
 		try {
 			const { userId, friendId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { friends, followers } = db.data;
 
 			const friendIndex = friends.findIndex(
@@ -167,7 +212,7 @@ class Profile {
 				friends.splice(friendIndex, 1);
 				followers.push(newFollower);
 
-				await db.write();
+				// await db.write();
 
 				return res.json({ message: 'Now unfriend' });
 			}
@@ -187,7 +232,7 @@ class Profile {
 				followers.splice(followerIndex, 1);
 				friends.push(newFriend);
 
-				await db.write();
+				// await db.write();
 
 				return res.json({ message: 'Now friends' });
 			}
@@ -200,7 +245,7 @@ class Profile {
 			if (followingIndex >= 0) {
 				followers.splice(followingIndex, 1);
 
-				await db.write();
+				// await db.write();
 
 				return res.json({ message: 'Now nobody' });
 			}
@@ -213,7 +258,7 @@ class Profile {
 
 			followers.push(newFollower);
 
-			await db.write();
+			// await db.write();
 
 			return res.json({ message: 'Now following' });
 		} catch (e) {
@@ -226,7 +271,7 @@ class Profile {
 		try {
 			// const { userId } = req.query;
 
-			await db.read();
+			// await db.read();
 
 			// const { online } = db.data;
 
@@ -244,22 +289,22 @@ class Profile {
 		try {
 			const { userId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { online } = db.data;
 
 			clearTimeout(this.#timerId[userId]);
 
 			online[userId] = 'online';
 
-			await db.write();
+			// await db.write();
 
 			this.#timerId[userId] = setTimeout(async () => {
-				await db.read();
+				// await db.read();
 				const { online } = db.data;
 
 				online[userId] = 'offline';
 
-				await db.write();
+				// await db.write();
 			}, 10000);
 
 			return res.json('online');
@@ -282,7 +327,7 @@ class Profile {
 			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
 			const { userId, search = '' } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { friends, followers, users } = db.data;
 
 			const friendsFromDb = friends.filter(

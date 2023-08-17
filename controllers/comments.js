@@ -8,7 +8,7 @@ class Comment {
 		try {
 			const { postId } = req.query;
 
-			await db.read();
+			// await db.read();
 			const { comments, users } = db.data;
 
 			const commentsFromDb = comments
@@ -40,7 +40,7 @@ class Comment {
 		try {
 			const { commentId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { comments } = db.data;
 
 			const deleteCommentIndex = comments.findIndex(
@@ -49,7 +49,7 @@ class Comment {
 
 			comments.splice(deleteCommentIndex, 1);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(comments[deleteCommentIndex]);
 		} catch (e) {
@@ -62,7 +62,7 @@ class Comment {
 		try {
 			const { authorId, text, postId } = req.body;
 
-			await db.read();
+			// await db.read();
 			const { comments } = db.data;
 
 			const newComment = new CommentModel({
@@ -73,7 +73,7 @@ class Comment {
 
 			comments.push(newComment);
 
-			await db.write();
+			// await db.write();
 
 			return res.json(newComment);
 		} catch (e) {
