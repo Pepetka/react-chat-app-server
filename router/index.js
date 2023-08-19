@@ -50,7 +50,8 @@ router.get('/messages', chatController.getMessages);
 router.post('/messages', upload.array('images'), chatController.postMessages);
 
 router.get('/group', groupController.group);
-router.post('/group', groupController.createGroup);
+router.post('/group', upload.single('avatar'), groupController.createGroup);
+router.put('/group', upload.single('avatar'), groupController.editGroup);
 router.delete('/group', groupController.deleteGroup);
 router.get('/getGroups', groupController.getGroups);
 router.get('/group-members', groupController.groupMembers);

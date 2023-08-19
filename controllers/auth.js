@@ -2,11 +2,12 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../database/database.js';
 import { UserModel } from '../models/user.js';
+import { getFullHostName } from '../helpers/getFullHostName.js';
 
 class Auth {
 	async register(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { username, password, firstname, lastname, age, email } = req.body;
 
 			// await db.read();
@@ -59,7 +60,7 @@ class Auth {
 
 	async login(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { username, password } = req.body;
 
 			// await db.read();

@@ -1,10 +1,9 @@
-import { join } from 'node:path';
-import sharp from 'sharp';
 import db from '../database/database.js';
 import { UserMiniModel } from '../models/user.js';
 import getContains from '../helpers/getContains.js';
 import { socketController } from '../app.js';
-import { filesDir } from '../storage/storage.js';
+import { saveImage } from '../storage/storage.js';
+import { getFullHostName } from '../helpers/getFullHostName.js';
 
 class Profile {
 	constructor() {
@@ -14,7 +13,7 @@ class Profile {
 
 	async profile(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { profileId } = req.query;
 
 			// await db.read();
@@ -38,7 +37,7 @@ class Profile {
 
 	async editProfile(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { status, email, firstname, lastname, age } = req.body;
 			const file = req.file;
 			const { id } = req.user;
@@ -46,12 +45,7 @@ class Profile {
 			let avatar;
 
 			if (file) {
-				const { buffer, originalname, fieldname } = file;
-				const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-				avatar = `${fieldname}-${uniqueSuffix}${originalname}.webp`;
-				await sharp(buffer)
-					.webp({ quality: 20 })
-					.toFile(join(filesDir, avatar));
+				avatar = await saveImage(file);
 			}
 
 			// await db.read();
@@ -156,7 +150,7 @@ class Profile {
 
 	async getFriends(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { userId } = req.query;
 
 			// await db.read();
@@ -324,7 +318,7 @@ class Profile {
 
 	async getUsers(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { userId, search = '' } = req.query;
 
 			// await db.read();

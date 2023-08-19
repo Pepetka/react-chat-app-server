@@ -1182,11 +1182,28 @@
       "description": "This group was created for communication on the topic of programming",
       "avatar": "bbb79637fa352254fe93ba9aacad1407.png",
       "createdAt": "14:21 13.02.2023"
+    },
+    {
+      "id": "9448cff3-9f96-4dcc-8fca-00777ee50cbc",
+      "ownerId": "6cbdb793",
+      "name": "JavaScript group",
+      "tags": [
+        "js",
+        "code"
+      ],
+      "description": "Some test description",
+      "createdAt": "11:38 18.08.2023",
+      "avatar": "avatar-1692434534936-213716990bbb79637fa352254fe93ba9aacad1407.png.webp"
     }
   ],
   "group-members": [
     {
       "groupId": "6cbdb805",
+      "userId": "6cbdb793",
+      "role": "admin"
+    },
+    {
+      "groupId": "9448cff3-9f96-4dcc-8fca-00777ee50cbc",
       "userId": "6cbdb793",
       "role": "admin"
     }

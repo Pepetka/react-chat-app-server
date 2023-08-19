@@ -1,15 +1,14 @@
-import { join } from 'node:path';
-import sharp from 'sharp';
 import db from '../database/database.js';
 import PostModel from '../models/post.js';
 import { UserMiniModel } from '../models/user.js';
 import sortByCreatedAt from '../helpers/sortByCreatedAt.js';
-import { filesDir } from '../storage/storage.js';
+import { saveImage } from '../storage/storage.js';
+import { getFullHostName } from '../helpers/getFullHostName.js';
 
 class Post {
 	async getPosts(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { userId, page, limit } = req.query;
 
 			// await db.read();
@@ -102,19 +101,15 @@ class Post {
 
 	async postPosts(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { text, authorId, profileId } = req.body;
 			const files = req.files;
 
 			const img = [];
 
-			for (const { buffer, originalname, fieldname } of files) {
-				const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-				const ref = `${fieldname}-${uniqueSuffix}${originalname}.webp`;
-
-				await sharp(buffer).webp({ quality: 20 }).toFile(join(filesDir, ref));
-
-				img.push(ref);
+			for (const file of files) {
+				const image = await saveImage(file);
+				img.push(image);
 			}
 
 			// await db.read();

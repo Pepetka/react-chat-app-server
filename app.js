@@ -1,17 +1,15 @@
 import http from 'http';
-import { join } from 'node:path';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { Server } from 'socket.io';
-import sharp from 'sharp';
 import router from './router/index.js';
 import { verificationAuth, verificationAuthSocket } from './middleware/auth.js';
 import SocketController from './controllers/socket.js';
-import { filesDir } from './storage/storage.js';
+import { filesDir, saveImage } from './storage/storage.js';
+import { getFullHostName } from './helpers/getFullHostName.js';
 
 dotenv.config();
-// await clearOnline();
 
 const app = express();
 app.use('/images', express.static(filesDir));
@@ -31,9 +29,7 @@ io.use(verificationAuthSocket);
 const socketController = new SocketController();
 
 io.on('connection', (socket) => {
-	const fullHostName = `${socket.handshake.protocol || 'http'}://${
-		socket.handshake.headers.host
-	}`;
+	const fullHostName = getFullHostName(socket.handshake);
 	console.log(`A user connected: ${socket.id}`);
 	socketController.connectedUsers = socket;
 
@@ -127,15 +123,9 @@ io.on('connection', (socket) => {
 			const images = [];
 
 			if (chatData.files) {
-				for (const { name, file } of chatData.files) {
-					const uniqueSuffix = `${Date.now()}-${Math.round(
-						Math.random() * 1e9,
-					)}`;
-					const ref = `images-${uniqueSuffix}${name}.webp`;
-
-					await sharp(file).webp({ quality: 20 }).toFile(join(filesDir, ref));
-
-					images.push(ref);
+				for (const file of chatData.files) {
+					const image = await saveImage(file);
+					images.push(image);
 				}
 			}
 

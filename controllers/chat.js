@@ -7,6 +7,7 @@ import sortByTime from '../helpers/sortByTime.js';
 import getCurrentDate from '../helpers/getCurrentDate.js';
 import MessageModel from '../models/message.js';
 import ChatModel from '../models/chat.js';
+import { getFullHostName } from '../helpers/getFullHostName.js';
 
 class Chat {
 	constructor() {
@@ -122,7 +123,7 @@ class Chat {
 
 	async getChats(req, res) {
 		try {
-			const fullHostName = `${req.protocol || 'http'}://${req.get('host')}`;
+			const fullHostName = getFullHostName(req);
 			const { userId, search = '' } = req.query;
 
 			// await db.read();
