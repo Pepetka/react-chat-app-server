@@ -128,15 +128,25 @@ class SocketController {
 
 		// await db.write();
 
-		const author = users.find((user) => user.id === newComment.authorId);
+		const commentsFromDb = comments
+			.filter((comment) => comment.postId === String(postId))
+			.map((comment) => {
+				const author = users.find((user) => user.id === comment.authorId);
+				const newAuthor = new UserMiniModel({
+					id: author.id,
+					avatar: `${fullHostName}/images/${author.avatar}`,
+					name: `${author.firstname} ${author.lastname}`,
+				});
 
-		const newAuthor = new UserMiniModel({
-			id: author.id,
-			avatar: `${fullHostName}/images/${author.avatar}`,
-			name: `${author.firstname} ${author.lastname}`,
-		});
+				return {
+					...comment,
+					authorId: undefined,
+					author: newAuthor,
+				};
+			})
+			.sort((prev, current) => sortByDate(prev.createdAt, current.createdAt));
 
-		return { ...newComment, authorId: undefined, author: newAuthor };
+		return commentsFromDb;
 	}
 
 	async deleteComment(commentId) {

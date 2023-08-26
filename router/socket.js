@@ -44,17 +44,17 @@ class Socket {
 
 			socket.on('new_comment', async (data, cb) => {
 				try {
-					const newComment = await this.controller.addComment(
+					const newComments = await this.controller.addComment(
 						data,
 						fullHostName,
 					);
 
 					this.io.emit('comments', {
 						postId: data.postId,
-						comment: newComment,
+						comments: newComments,
 					});
 
-					cb(newComment);
+					cb(newComments);
 				} catch (e) {
 					console.log(e);
 					return new Error(e.message);
@@ -66,7 +66,10 @@ class Socket {
 					const deleteCommentId = await this.controller.deleteComment(
 						data.commentId,
 					);
-					const comments = await this.controller.getComments(data.postId);
+					const comments = await this.controller.getComments(
+						data.postId,
+						fullHostName,
+					);
 
 					this.io.emit('comments', { postId: data.postId, comments });
 
