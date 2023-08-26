@@ -1,20 +1,22 @@
-const sortByCreatedAt = (prevPost, nextPost) => {
+const sortByCreatedAt = (prev, next, direction = 'dawn') => {
 	const prevDate = new Date(
-		`${prevPost.createdAt.split(' ')[0]} ${prevPost.createdAt
+		`${prev.createdAt.split(' ')[0]} ${prev.createdAt
 			.split(' ')[1]
 			.split('.')
 			.reverse()
 			.join('.')}`,
 	).getTime();
 	const nextDate = new Date(
-		`${nextPost.createdAt.split(' ')[0]} ${nextPost.createdAt
+		`${next.createdAt.split(' ')[0]} ${next.createdAt
 			.split(' ')[1]
 			.split('.')
 			.reverse()
 			.join('.')}`,
 	).getTime();
 
-	return nextDate - prevDate;
+	const coefficient = direction === 'dawn' ? 1 : -1;
+
+	return coefficient * (nextDate - prevDate);
 };
 
 export default sortByCreatedAt;

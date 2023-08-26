@@ -1,11 +1,15 @@
 import db from '../database/database.js';
 import sortByDate from '../helpers/sortByCreatedAt.js';
 import { UserMiniModel } from '../models/user.js';
-import CommentModel from '../models/comment.js';
+import { getFullHostName } from '../helpers/getFullHostName.js';
+import SocketController from './socket.js';
+
+const socketController = new SocketController();
 
 class Comment {
 	async getComments(req, res) {
 		try {
+			const fullHostName = getFullHostName(req);
 			const { postId } = req.query;
 
 			// await db.read();
@@ -17,7 +21,7 @@ class Comment {
 					const author = users.find((user) => user.id === comment.authorId);
 					const newAuthor = new UserMiniModel({
 						id: author.id,
-						avatar: author.avatar,
+						avatar: `${fullHostName}/images/${author.avatar}`,
 						name: `${author.firstname} ${author.lastname}`,
 					});
 
@@ -27,7 +31,7 @@ class Comment {
 						author: newAuthor,
 					};
 				})
-				.sort(sortByDate);
+				.sort((prev, current) => sortByDate(prev, current));
 
 			return res.json(commentsFromDb);
 		} catch (e) {
@@ -40,18 +44,9 @@ class Comment {
 		try {
 			const { commentId } = req.body;
 
-			// await db.read();
-			const { comments } = db.data;
+			const deletedComment = await socketController.deleteComment(commentId);
 
-			const deleteCommentIndex = comments.findIndex(
-				(comment) => comment.id === commentId,
-			);
-
-			comments.splice(deleteCommentIndex, 1);
-
-			// await db.write();
-
-			return res.json(comments[deleteCommentIndex]);
+			return res.json(deletedComment);
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -60,20 +55,13 @@ class Comment {
 
 	async postComments(req, res) {
 		try {
-			const { authorId, text, postId } = req.body;
+			const fullHostName = getFullHostName(req);
+			const commentData = req.body;
 
-			// await db.read();
-			const { comments } = db.data;
-
-			const newComment = new CommentModel({
-				text,
-				authorId,
-				postId,
-			});
-
-			comments.push(newComment);
-
-			// await db.write();
+			const newComment = await socketController.addComment(
+				commentData,
+				fullHostName,
+			);
 
 			return res.json(newComment);
 		} catch (e) {

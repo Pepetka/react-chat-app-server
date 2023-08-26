@@ -3,11 +3,13 @@ import db from '../database/database.js';
 import getContains from '../helpers/getContains.js';
 import { UserMiniModel } from '../models/user.js';
 import sortByDate from '../helpers/sortByDate.js';
-import sortByTime from '../helpers/sortByTime.js';
 import getCurrentDate from '../helpers/getCurrentDate.js';
-import MessageModel from '../models/message.js';
 import ChatModel from '../models/chat.js';
 import { getFullHostName } from '../helpers/getFullHostName.js';
+import sortByCreatedAt from '../helpers/sortByCreatedAt.js';
+import SocketController from './socket.js';
+
+const socketController = new SocketController();
 
 class Chat {
 	constructor() {
@@ -196,7 +198,8 @@ class Chat {
 
 	async getMessages(req, res) {
 		try {
-			const { chatId, userId, friendId } = req.query;
+			const fullHostName = getFullHostName(req);
+			const { chatId, userId, friendId, page, limit } = req.query;
 
 			// await db.read();
 			const { users, messages, chats } = db.data;
@@ -210,9 +213,12 @@ class Chat {
 					name: `${friend.firstname} ${friend.lastname}`,
 				});
 
-				return res.json({
+				return {
 					friend: friendMini,
-				});
+					messages: [],
+					endReached: false,
+					totalCount: 0,
+				};
 			}
 
 			const friend = users.find((user) => friendId === user.id);
@@ -221,54 +227,77 @@ class Chat {
 
 			const messagesResponse = {};
 
-			messages.forEach((message) => {
-				if (message.chatId !== chatId) {
-					return;
-				}
+			const chatMessages = messages
+				.filter((message) => message.chatId === chatId)
+				.map((message) => {
+					const array = message.createdAt.split(' ')[0].split(':');
 
-				const array = message.createdAt.split(' ')[0].split(':');
+					const time = `${array[0]}:${array[1]}`;
+					const date = message.createdAt.split(' ')[1];
 
-				const time = `${array[0]}:${array[1]}`;
-				const date = message.createdAt.split(' ')[1];
+					const currentData = {
+						id: message.id,
+						authorId: message.userId,
+						name:
+							user.id === message.userId
+								? `${user.firstname} ${user.lastname}`
+								: `${friend.firstname} ${friend.lastname}`,
+						text: message.text,
+						img: message.img?.map((image) => `${fullHostName}/images/${image}`),
+						time,
+						date,
+						createdAt: message.createdAt,
+					};
 
-				const currentData = {
-					authorId: message.userId,
-					name:
-						user.id === message.userId
-							? `${user.firstname} ${user.lastname}`
-							: `${friend.firstname} ${friend.lastname}`,
-					text: message.text,
-					img: message.img,
-					time,
-				};
+					return currentData;
+				})
+				.sort((prev, current) => sortByCreatedAt(prev, current, 'up'));
 
-				if (messagesResponse[date]) {
-					messagesResponse[date] = [...messagesResponse[date], currentData];
-				} else {
-					messagesResponse[date] = [currentData];
-				}
-			});
+			const endIndex = chatMessages.length;
+			const startIndex = Math.max(
+				endIndex - (Number(page) * Number(limit) + Number(limit)),
+				0,
+			);
+			const endReached = startIndex === 0;
 
-			Object.values(messagesResponse).forEach((value) => {
-				value.sort((prev, current) =>
-					sortByTime(prev.time, current.time, 'up'),
-				);
-			});
+			chatMessages
+				.slice(startIndex, endIndex)
+				.forEach(({ date, ...currentData }) => {
+					if (messagesResponse[date]) {
+						messagesResponse[date] = [...messagesResponse[date], currentData];
+					} else {
+						messagesResponse[date] = [currentData];
+					}
+				});
 
 			const chatFriend = new UserMiniModel({
 				id: friend.id,
-				avatar: friend.avatar,
+				avatar: `${fullHostName}/images/${friend.avatar}`,
 				name: `${friend.firstname} ${friend.lastname}`,
 			});
 
+			const chatUser = new UserMiniModel({
+				id: user.id,
+				avatar: `${fullHostName}/images/${user.avatar}`,
+				name: `${user.firstname} ${user.lastname}`,
+			});
+
 			const response = {
-				friend: chatFriend,
+				chatMembers: {
+					[chatFriend.id]: chatFriend,
+					[chatUser.id]: chatUser,
+				},
 				messages: Object.entries(messagesResponse).sort((prev, current) =>
 					sortByDate(prev[0], current[0], 'up'),
 				),
 			};
 
-			return res.json(response);
+			return res.json({
+				friend: chatFriend,
+				messages: response.messages,
+				endReached,
+				totalCount: endIndex,
+			});
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
@@ -277,41 +306,15 @@ class Chat {
 
 	async postMessages(req, res) {
 		try {
-			const { chatId, userId, friendId, text, img } = req.body;
+			const fullHostName = getFullHostName(req);
+			const chatData = req.body;
 
-			// await db.read();
-			const { users, messages, chats, 'chat-members': chatMembers } = db.data;
+			const newMessage = await socketController.postChatMessages(
+				chatData,
+				fullHostName,
+			);
 
-			const newMessage = new MessageModel({
-				chatId,
-				userId,
-				type: 'text',
-				text: text || undefined,
-				img,
-			});
-
-			messages.push(newMessage);
-
-			if (!chats.find((chat) => chat.id === chatId)) {
-				const friend = users.find((user) => user.id === userId);
-
-				const newChat = new ChatModel({
-					id: chatId,
-					name: `${friend.firstname} ${friend.lastname}`,
-					ownerId: userId,
-				});
-
-				chats.push(newChat);
-
-				chatMembers.push(
-					{ userId, chatId, createdAt: getCurrentDate() },
-					{ userId: friendId, chatId, createdAt: getCurrentDate() },
-				);
-			}
-
-			// await db.write();
-
-			return res.json(newMessage.id);
+			return res.json(newMessage);
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });

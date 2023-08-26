@@ -26,8 +26,6 @@ router.get('/social', profileController.getSocial);
 router.get('/friends', profileController.getFriends);
 router.post('/friends', profileController.postFriends);
 router.get('/relations', profileController.getRelations);
-router.get('/online', profileController.getOnline);
-router.post('/online', profileController.postOnline);
 router.get('/getUsers', profileController.getUsers);
 
 router.get('/posts', postController.getPosts);

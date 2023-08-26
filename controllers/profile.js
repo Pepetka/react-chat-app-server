@@ -1,13 +1,11 @@
 import db from '../database/database.js';
 import { UserMiniModel } from '../models/user.js';
 import getContains from '../helpers/getContains.js';
-import { socketController } from '../app.js';
 import { saveImage } from '../storage/storage.js';
 import { getFullHostName } from '../helpers/getFullHostName.js';
 
 class Profile {
 	constructor() {
-		this.postOnline = this.postOnline.bind(this);
 		this.getUsers = this.getUsers.bind(this);
 	}
 
@@ -255,53 +253,6 @@ class Profile {
 			// await db.write();
 
 			return res.json({ message: 'Now following' });
-		} catch (e) {
-			console.log(e);
-			return res.status(500).json({ message: e.message });
-		}
-	}
-
-	async getOnline(req, res) {
-		try {
-			// const { userId } = req.query;
-
-			// await db.read();
-
-			// const { online } = db.data;
-
-			// const response = online[userId] ?? 'offline';
-			return res.json(socketController.onlineUsers);
-		} catch (e) {
-			console.log(e);
-			return res.status(500).json({ message: e.message });
-		}
-	}
-
-	#timerId = {};
-
-	async postOnline(req, res) {
-		try {
-			const { userId } = req.body;
-
-			// await db.read();
-			const { online } = db.data;
-
-			clearTimeout(this.#timerId[userId]);
-
-			online[userId] = 'online';
-
-			// await db.write();
-
-			this.#timerId[userId] = setTimeout(async () => {
-				// await db.read();
-				const { online } = db.data;
-
-				online[userId] = 'offline';
-
-				// await db.write();
-			}, 10000);
-
-			return res.json('online');
 		} catch (e) {
 			console.log(e);
 			return res.status(500).json({ message: e.message });
