@@ -63,7 +63,7 @@ class Group {
 
 			const newGroup = new GroupModel({
 				name,
-				avatar: avatar ?? '3100405.png',
+				avatar: avatar ?? '3100405.png.webp',
 				description: description ?? '',
 				ownerId,
 				tags: tags ?? [],

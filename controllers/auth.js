@@ -34,7 +34,7 @@ class Auth {
 				lastname,
 				email,
 				age,
-				avatar: '3100405.png',
+				avatar: '3100405.png.webp',
 			});
 
 			const accessToken = jwt.sign(

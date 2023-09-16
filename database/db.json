@@ -10,7 +10,7 @@
       "lastname": "Kuznetsov",
       "age": "22",
       "createdAt": "05.06.2022",
-      "avatar": "3100405.png",
+      "avatar": "3100405.png.webp",
       "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5NDg1NTIwNiwiZXhwIjoxNjk0ODU1MjM2fQ.Xe8GQVx6Sb6VrI2ATUfRNQNkqfSoP5uK50-nurEKeAk",
       "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZjYmRiNzkzIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY5NDg1NTIwNiwiZXhwIjoxNjk0ODU1MjM2fQ.Xe8GQVx6Sb6VrI2ATUfRNQNkqfSoP5uK50-nurEKeAk"
     },
@@ -24,7 +24,7 @@
       "lastname": "Ivanov",
       "age": 22,
       "createdAt": "05.0.2023",
-      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg"
+      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg.webp"
     },
     {
       "id": "6cbdb795",
@@ -36,7 +36,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "3100405.png"
+      "avatar": "3100405.png.webp"
     },
     {
       "id": "6cbdb796",
@@ -48,7 +48,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg"
+      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg.webp"
     },
     {
       "id": "6cbdb797",
@@ -60,7 +60,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "3100405.png"
+      "avatar": "3100405.png.webp"
     },
     {
       "id": "6cbdb798",
@@ -72,7 +72,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg"
+      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg.webp"
     },
     {
       "id": "6cbdb799",
@@ -84,7 +84,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg"
+      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg.webp"
     },
     {
       "id": "6cbdb800",
@@ -96,7 +96,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg"
+      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg.webp"
     },
     {
       "id": "6cbdb801",
@@ -108,7 +108,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "3100405.png"
+      "avatar": "3100405.png.webp"
     },
     {
       "id": "6cbdb802",
@@ -120,7 +120,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "3100405.png"
+      "avatar": "3100405.png.webp"
     },
     {
       "id": "6cbdb803",
@@ -132,7 +132,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg"
+      "avatar": "1_1WCjO1iYMo7J7Upp8KMfLA@2x.jpg.webp"
     },
     {
       "id": "6cbdb804",
@@ -144,7 +144,7 @@
       "email": "vlad.kznetsov@gmail.com",
       "age": 22,
       "createdAt": "15.01.2023",
-      "avatar": "3100405.png"
+      "avatar": "3100405.png.webp"
     }
   ],
   "friends": [
@@ -271,8 +271,8 @@
       "authorId": "6cbdb793",
       "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
       "img": [
-        "pools-drawing-44.jpg",
-        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg"
+        "pools-drawing-44.jpg.webp",
+        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg.webp"
       ],
       "createdAt": "22:16 14.01.2021",
       "id": "0"
@@ -281,7 +281,7 @@
       "authorId": "6cbdb793",
       "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
       "img": [
-        "pools-drawing-44.jpg"
+        "pools-drawing-44.jpg.webp"
       ],
       "createdAt": "12:20 20.10.2020",
       "id": "1"
@@ -290,7 +290,7 @@
       "authorId": "6cbdb794",
       "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
       "img": [
-        "pools-drawing-44.jpg"
+        "pools-drawing-44.jpg.webp"
       ],
       "createdAt": "15:00 14.01.2020",
       "id": "2"
@@ -299,8 +299,8 @@
       "authorId": "6cbdb793",
       "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
       "img": [
-        "pools-drawing-44.jpg",
-        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg"
+        "pools-drawing-44.jpg.webp",
+        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg.webp"
       ],
       "createdAt": "15:24 14.01.2020",
       "id": "3"
@@ -309,8 +309,8 @@
       "authorId": "6cbdb794",
       "text": "Мой дядя самых честных правил,\nКогда не в шутку занемог,\nОн уважать себя заставил\nИ лучше выдумать не мог.\nЕго пример другим наука;\nНо, боже мой, какая скука\nС больным сидеть и день и ночь,\nНе отходя ни шагу прочь!\nКакое низкое коварство\nПолуживого забавлять,\nЕму подушки поправлять,\nПечально подносить лекарство,\nВздыхать и думать про себя:\nКогда же черт возьмет тебя!",
       "img": [
-        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg",
-        "pools-drawing-44.jpg"
+        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg.webp",
+        "pools-drawing-44.jpg.webp"
       ],
       "createdAt": "15:24 14.01.2020",
       "id": "4"
@@ -319,7 +319,7 @@
       "authorId": "6cbdb793",
       "text": "Some news",
       "img": [
-        "pools-drawing-44.jpg"
+        "pools-drawing-44.jpg.webp"
       ],
       "createdAt": "12:54 24.01.2023",
       "id": "GmSpvBG"
@@ -340,9 +340,9 @@
       "authorId": "6cbdb794",
       "text": "New post",
       "img": [
-        "pools-drawing-44.jpg",
-        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg",
-        "pools-drawing-44.jpg"
+        "pools-drawing-44.jpg.webp",
+        "neobychnye-bzlikie-selfi-ot-ari-fararoj-7.jpg.webp",
+        "pools-drawing-44.jpg.webp"
       ],
       "createdAt": "12:34 30.01.2023",
       "id": "e8a183d9-5b1f-4c09-bf21-cfba6b063a75"
@@ -366,8 +366,8 @@
       "authorId": "6cbdb793",
       "text": "Post",
       "img": [
-        "cuDYdF.jpg",
-        "1657888342_47-kartinkin-net-p-vodopad-raduzhnii-priroda-krasivo-foto-52.jpg"
+        "cuDYdF.jpg.webp",
+        "1657888342_47-kartinkin-net-p-vodopad-raduzhnii-priroda-krasivo-foto-52.jpg.webp"
       ],
       "createdAt": "10:39 02.02.2023",
       "id": "42e896d8-91a0-4e53-97a8-a9aeadebe42a"
@@ -859,8 +859,8 @@
       "userId": "6cbdb793",
       "type": "text",
       "img": [
-        "cuDYdF.jpg",
-        "1657888342_47-kartinkin-net-p-vodopad-raduzhnii-priroda-krasivo-foto-52.jpg",
+        "cuDYdF.jpg.webp",
+        "1657888342_47-kartinkin-net-p-vodopad-raduzhnii-priroda-krasivo-foto-52.jpg.webp",
         "person-selfie-one-line-drawing-man-taking-picture-smartphone-mobile-phone-camera-concept-narcissist-technology-166393132.webp"
       ],
       "createdAt": "15:03:12 12.02.2023"
@@ -968,7 +968,7 @@
       "type": "text",
       "text": "Test message\nTest message",
       "img": [
-        "MILLENNIAL.jpg"
+        "MILLENNIAL.jpg.webp"
       ],
       "createdAt": "12:59:08 14.02.2023"
     },
@@ -978,7 +978,7 @@
       "userId": "6cbdb794",
       "type": "text",
       "img": [
-        "skachat-krasivye-kartinki-na-telefon-besplatno-4.jpg"
+        "skachat-krasivye-kartinki-na-telefon-besplatno-4.jpg.webp"
       ],
       "createdAt": "10:33:56 22.06.2023"
     },
@@ -1265,7 +1265,7 @@
         "MATH"
       ],
       "description": "This group was created for communication on the topic of programming",
-      "avatar": "bbb79637fa352254fe93ba9aacad1407.png",
+      "avatar": "bbb79637fa352254fe93ba9aacad1407.png.webp",
       "createdAt": "14:21 13.02.2023"
     },
     {
