@@ -26,7 +26,7 @@ class Group {
 			const fullHostName = getFullHostName(req);
 			const { groupId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { groups } = db.data;
 
 			const group = groups.find((group) => group.id === groupId);
@@ -58,7 +58,7 @@ class Group {
 				avatar = await saveImage(file);
 			}
 
-			// await db.read();
+			await db.read();
 			const { groups, 'group-members': groupMembers } = db.data;
 
 			const newGroup = new GroupModel({
@@ -77,7 +77,7 @@ class Group {
 				role: 'admin',
 			});
 
-			// await db.write();
+			await db.write();
 
 			return res.json({
 				...newGroup,
@@ -101,7 +101,7 @@ class Group {
 				avatar = await saveImage(file);
 			}
 
-			// await db.read();
+			await db.read();
 			const { groups } = db.data;
 
 			const group = groups.find((group) => group.id === groupId);
@@ -111,7 +111,7 @@ class Group {
 			if (tags) group.tags = tags;
 			if (avatar) group.avatar = avatar;
 
-			// await db.write();
+			await db.write();
 
 			return res.json({
 				...group,
@@ -127,13 +127,13 @@ class Group {
 		try {
 			const { groupId } = req.body;
 
-			// await db.read();
+			await db.read();
 			const { groups, 'group-members': groupMembers } = db.data;
 
 			groups.mutationFilter((group) => group.id !== groupId);
 			groupMembers.mutationFilter((member) => member.groupId !== groupId);
 
-			// await db.write();
+			await db.write();
 
 			return res.json(groupId);
 		} catch (e) {
@@ -148,7 +148,7 @@ class Group {
 			const { userId, search = '' } = req.query;
 			const { id } = req.user;
 
-			// await db.read();
+			await db.read();
 			const { groups, 'group-members': groupMembers } = db.data;
 
 			const userGroups = groupMembers
@@ -205,7 +205,7 @@ class Group {
 		try {
 			const { userId, groupId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { 'group-members': groupMembers } = db.data;
 
 			const member = groupMembers.find(

@@ -38,7 +38,7 @@ class SocketController {
 		{ chatId, userId, friendId, text, img },
 		fullHostName,
 	) {
-		// await db.read();
+		await db.read();
 		const { users, messages, chats, 'chat-members': chatMembers } = db.data;
 
 		const newMessage = new MessageModel({
@@ -67,7 +67,7 @@ class SocketController {
 			);
 		}
 
-		// await db.write();
+		await db.write();
 
 		const user = users.find((user) => userId === user.id);
 
@@ -90,7 +90,7 @@ class SocketController {
 	}
 
 	async getComments(postId, fullHostName) {
-		// await db.read();
+		await db.read();
 		const { comments, users } = db.data;
 
 		const commentsFromDb = comments
@@ -115,7 +115,7 @@ class SocketController {
 	}
 
 	async addComment({ authorId, text, postId }, fullHostName) {
-		// await db.read();
+		await db.read();
 		const { comments, users } = db.data;
 
 		const newComment = new CommentModel({
@@ -126,7 +126,7 @@ class SocketController {
 
 		comments.push(newComment);
 
-		// await db.write();
+		await db.write();
 
 		const commentsFromDb = comments
 			.filter((comment) => comment.postId === String(postId))
@@ -150,7 +150,7 @@ class SocketController {
 	}
 
 	async deleteComment(commentId) {
-		// await db.read();
+		await db.read();
 		const { comments } = db.data;
 
 		const deleteCommentIndex = comments.findIndex(
@@ -159,7 +159,7 @@ class SocketController {
 
 		comments.splice(deleteCommentIndex, 1);
 
-		// await db.write();
+		await db.write();
 
 		return comments[deleteCommentIndex];
 	}

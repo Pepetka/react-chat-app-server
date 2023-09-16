@@ -4,6 +4,7 @@ const verificationAuth = (req, res, next) => {
 	if (
 		req.originalUrl === '/login' ||
 		req.originalUrl === '/register' ||
+		req.originalUrl === '/relogin' ||
 		req.originalUrl.includes('/images/')
 	) {
 		return next();
@@ -26,7 +27,7 @@ const verificationAuth = (req, res, next) => {
 		return next();
 	} catch (e) {
 		console.log(e);
-		return res.status(400).json({ message: 'Invalid token' });
+		return res.status(401).json({ message: 'Invalid token' });
 	}
 };
 

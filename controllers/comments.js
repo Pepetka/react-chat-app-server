@@ -12,7 +12,7 @@ class Comment {
 			const fullHostName = getFullHostName(req);
 			const { postId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { comments, users } = db.data;
 
 			const commentsFromDb = comments

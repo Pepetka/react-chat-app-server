@@ -18,6 +18,7 @@ const router = Router();
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
+router.post('/relogin', authController.relogin);
 router.delete('/user', authController.deleteUser);
 
 router.get('/profile', profileController.profile);

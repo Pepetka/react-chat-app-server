@@ -11,7 +11,7 @@ class Post {
 			const fullHostName = getFullHostName(req);
 			const { userId, page, limit } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { 'user-posts': userPosts, posts, users, groups } = db.data;
 
 			const userPostsFromDb = userPosts
@@ -69,7 +69,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			// await db.read();
+			await db.read();
 			const { 'user-posts': userPosts, posts } = db.data;
 
 			const deletePost = posts.find((post) => post.id === postId);
@@ -90,7 +90,7 @@ class Post {
 
 			userPosts.splice(deleteUserPostIndex, 1);
 
-			// await db.write();
+			await db.write();
 
 			return res.json(deletePost);
 		} catch (e) {
@@ -112,7 +112,7 @@ class Post {
 				img.push(image);
 			}
 
-			// await db.read();
+			await db.read();
 			const {
 				'user-posts': userPosts,
 				posts,
@@ -137,7 +137,7 @@ class Post {
 			posts.push(newPost);
 			userPosts.push(newUserPost);
 
-			// await db.write();
+			await db.write();
 
 			return res.json({
 				...newPost,
@@ -153,7 +153,7 @@ class Post {
 		try {
 			const { postId, userId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const {
 				'user-posts': userPosts,
 				posts,
@@ -208,7 +208,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			// await db.read();
+			await db.read();
 			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } =
 				db.data;
 
@@ -234,7 +234,7 @@ class Post {
 
 			postDislikes.splice(postDislikesIndex, 1);
 
-			// await db.write();
+			await db.write();
 
 			return res.json(newPostLikes);
 		} catch (e) {
@@ -247,7 +247,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			// await db.read();
+			await db.read();
 			const { 'post-likes': postLikes, 'post-dislikes': postDislikes } =
 				db.data;
 
@@ -273,7 +273,7 @@ class Post {
 
 			postLikes.splice(postLikesIndex, 1);
 
-			// await db.write();
+			await db.write();
 
 			return res.json(newPostDislikes);
 		} catch (e) {
@@ -286,7 +286,7 @@ class Post {
 		try {
 			const { postId, userId } = req.body;
 
-			// await db.read();
+			await db.read();
 			const { 'user-posts': userPosts, posts } = db.data;
 
 			const userPostFromDb = userPosts.find(
@@ -302,7 +302,7 @@ class Post {
 				userPosts.push(newUserPost);
 			}
 
-			// await db.write();
+			await db.write();
 
 			return res.json(newUserPost);
 		} catch (e) {

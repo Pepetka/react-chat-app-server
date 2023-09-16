@@ -14,7 +14,7 @@ class Profile {
 			const fullHostName = getFullHostName(req);
 			const { profileId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { users } = db.data;
 
 			const profile = users.find((user) => user.id === profileId);
@@ -46,7 +46,7 @@ class Profile {
 				avatar = await saveImage(file);
 			}
 
-			// await db.read();
+			await db.read();
 			const { users } = db.data;
 
 			const editableProfile = users.find((user) => user.id === id);
@@ -58,7 +58,7 @@ class Profile {
 			if (age) editableProfile.age = age;
 			if (avatar) editableProfile.avatar = avatar;
 
-			// await db.write();
+			await db.write();
 
 			return res.json({
 				...editableProfile,
@@ -78,7 +78,7 @@ class Profile {
 				return res.json({ relations: 'nobody' });
 			}
 
-			// await db.read();
+			await db.read();
 			const { friends, followers } = db.data;
 
 			const friend = friends.find(
@@ -120,7 +120,7 @@ class Profile {
 		try {
 			const { userId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { followers, 'group-members': groupMembers } = db.data;
 
 			const followersFromDb = followers.filter(
@@ -151,7 +151,7 @@ class Profile {
 			const fullHostName = getFullHostName(req);
 			const { userId } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { friends, users } = db.data;
 
 			const friendsFromDb = friends
@@ -185,7 +185,7 @@ class Profile {
 		try {
 			const { userId, friendId } = req.body;
 
-			// await db.read();
+			await db.read();
 			const { friends, followers } = db.data;
 
 			const friendIndex = friends.findIndex(
@@ -204,7 +204,7 @@ class Profile {
 				friends.splice(friendIndex, 1);
 				followers.push(newFollower);
 
-				// await db.write();
+				await db.write();
 
 				return res.json({ message: 'Now unfriend' });
 			}
@@ -224,7 +224,7 @@ class Profile {
 				followers.splice(followerIndex, 1);
 				friends.push(newFriend);
 
-				// await db.write();
+				await db.write();
 
 				return res.json({ message: 'Now friends' });
 			}
@@ -237,7 +237,7 @@ class Profile {
 			if (followingIndex >= 0) {
 				followers.splice(followingIndex, 1);
 
-				// await db.write();
+				await db.write();
 
 				return res.json({ message: 'Now nobody' });
 			}
@@ -250,7 +250,7 @@ class Profile {
 
 			followers.push(newFollower);
 
-			// await db.write();
+			await db.write();
 
 			return res.json({ message: 'Now following' });
 		} catch (e) {
@@ -272,7 +272,7 @@ class Profile {
 			const fullHostName = getFullHostName(req);
 			const { userId, search = '' } = req.query;
 
-			// await db.read();
+			await db.read();
 			const { friends, followers, users } = db.data;
 
 			const friendsFromDb = friends.filter(
