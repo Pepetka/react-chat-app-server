@@ -1,4 +1,4 @@
-export const getFullHostName = ({ protocol, get, headers }) => {
+export const getFullHostName = ({ get, headers }) => {
 	const host = headers?.host ?? get('host');
-	return `${protocol || 'http'}://${host}`;
+	return `https://${host}`;
 };

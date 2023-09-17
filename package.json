@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon -e js ./index.js",
     "start": "node ./index.js",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "open": "ssh root@vlad-is-love.ru"
   },
   "keywords": [],
   "author": "",
